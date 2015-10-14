@@ -1,0 +1,84 @@
+#!/bin/bash
+
+format() {
+    perl_filter='if (/.*\[(\d+%)\] (\[(-?\d+.\d+dB)\] )?\[(on|off)\]/)'
+    perl_filter+='{CORE::say $4 eq "off" ? "MUTE" : "'
+    perl_filter+=$([[ $STEP = *dB ]] && echo '$3' || echo '$1')
+    perl_filter+='"; exit}'
+    perl -ne "$perl_filter"
+}
+
+vol() {
+    mpc volume | tr -d volume:\ %
+}
+
+master() {
+    echo $(amixer -D pulse get Master Capture | format | tr -d %)
+}
+
+inc() {
+    times=$(((($(vol) / 5) + 1) * 5))
+
+    echo $times
+}
+
+dec() {
+    echo $(decrease $(vol))
+}
+
+icon() {
+    result=$(vol)
+    if [[ $result == "MUTE" ]]; then
+        icon=""
+    elif (( $result == 0 )); then
+        icon=""
+    elif (( $result > 49 )) || (( $result == 100 )); then
+        icon=""
+    else
+        icon=""
+    fi
+
+    echo $icon
+}
+
+line() {
+    name=$(mpc current)
+    if $(mpc | head -2 | tail -1 | grep -q paused); then
+        paused=0
+    else
+        paused=1
+    fi
+
+    symbol=$(icon)
+    if [ "$name" == "" ]; then
+        status="MPD stopped"
+    elif (( $(vol) == 100 )); then
+        if [[ $paused == 0 ]] || [ "$(master)" == "MUTE" ]; then
+            status=" [paused]"
+        else
+            status=""
+        fi
+    else
+        if [[ $paused == 0 ]] || [ "$(master)" == "MUTE" ]; then
+            status=" [paused | $symbol "$(vol)"%]"
+        else
+            status=" [$symbol "$(vol)"%]"
+        fi
+    fi
+
+    echo "$name"$status
+}
+
+case $BLOCK_BUTTON in
+    1) mpc -q toggle && line ;;
+    2) mpc -q clear && mpc ls | mpc add && mpc -q random on && mpc -q play ;;
+    3) mpc -q stop ;;
+    4) mpc -q volume $(inc) ;;
+    5) mpc -q volume $(dec) ;;
+    # scroll left 6) mpc -q prev ;;
+    # scroll right 7) mpc -q next ;;
+    8) mpc -q prev ;;
+    9) mpc -q next ;;
+esac
+
+echo "$(line)"

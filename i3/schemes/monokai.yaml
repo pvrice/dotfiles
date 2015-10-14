@@ -1,0 +1,62 @@
+# vim: filetype=yaml
+---
+meta:
+    description: 'Monokai'
+colors:
+    base00:         '#272822'
+    base01:         '#383830'
+    base02:         '#49483e'
+    base03:         '#75715e'
+    base04:         '#a59f85'
+    base05:         '#f8f8f2'
+    base06:         '#f5f4f1'
+    base07:         '#f9f8f5'
+    base08:         '#f92672'
+    base09:         '#fd971f'
+    base0A:         '#f4bf75'
+    base0B:         '#a6e22e'
+    base0C:         '#a1efe4'
+    base0D:         '#66d9ef'
+    base0E:         '#ae81ff'
+    base0F:         '#cc6633'
+window_colors:
+  focused:
+    border:         'base0B'
+    background:     'base0B'
+    text:           'base07'
+    indicator:      'base0B'
+  focused_inactive:
+    border:         'base01'
+    background:     'base01'
+    text:           'base06'
+    indicator:      'base0E'
+  unfocused:
+    border:         'base01'
+    background:     'base01'
+    text:           'base05'
+    indicator:      'base02'
+  urgent:
+    border:         'base0F'
+    background:     'base0F'
+    text:           'base07'
+    indicator:      'base08'
+bar_colors:
+  separator:        'base08'
+  background:       'base01'
+  statusline:       'base0D'
+  focused_workspace:
+    border:         'base07'
+    background:     'base0B'
+    text:           'base07'
+  active_workspace:
+    border:         'base07'
+    background:     'base0E'
+    text:           'base07'
+  inactive_workspace:
+    border:         'base04'
+    background:     'base05'
+    text:           'base00'
+  urgent_workspace:
+    border:         'base0F'
+    background:     'base0F'
+    text:           'base07'
