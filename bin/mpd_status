@@ -23,7 +23,8 @@ inc() {
 }
 
 dec() {
-    echo $(decrease $(vol))
+    temp=$(vol)
+    echo $(python -c "print((($temp - 1 if $temp % 5 == 0 else $temp) // 5) * 5)")
 }
 
 icon() {
