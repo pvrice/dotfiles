@@ -30,7 +30,7 @@ values."
      finance
      git
      ;; haskell
-     ;; java
+     java
      latex
      ;; markdown
      ;; org
@@ -231,8 +231,8 @@ layers configuration. You are free to put any user code."
   (add-hook 'c-mode-common-hook '(lambda () (c-set-style "stroustrup")))
 
   ;; Java
-  (setq eclim-eclipse-dirs '("/usr/lib/eclipse")
-                           '(eclim-executable "/usr/lib/eclipse/eclim"))
+  (setq eclim-eclipse-dirs "/usr/lib/eclipse"
+        eclim-executable "/usr/lib/eclipse/eclim")
 
   ;; don't highlight inside braces
   (setq sp-highlight-pair-overlay nil)
