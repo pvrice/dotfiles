@@ -27,14 +27,18 @@ values."
      (c-c++ :variables
             c-c++-enable-clang-support t)
      emacs-lisp
-     finance
+     ;; finance
      git
-     ;; haskell
-     java
+     (haskell :variables
+              haskell-enable-ghc-mod-support t
+              haskell-enable-ghci-ng-support t
+              haskell-enable-shm-support t
+              haskell-enable-hindent-style "chris-done")
+     ;; java
      latex
      ;; markdown
      ;; org
-     rust
+     ;; rust
      semantic
      (shell :variables
             shell-default-height 30
