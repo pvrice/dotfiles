@@ -232,7 +232,7 @@ layers configuration. You are free to put any user code."
   (setenv "RUST_SRC_PATH" "/usr/local/src/rust/src")
 
   ;; C
-  (add-hook 'c-mode-common-hook '(lambda () (c-set-style "stroustrup")))
+  ;; (add-hook 'c-mode-common-hook '(lambda () (c-set-style "stroustrup")))
 
   ;; Java
   (setq eclim-eclipse-dirs "/usr/lib/eclipse"
