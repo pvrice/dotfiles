@@ -28,11 +28,7 @@ values."
             c-c++-enable-clang-support t)
      emacs-lisp
      git
-     (haskell :variables
-              haskell-enable-ghc-mod-support t
-              haskell-enable-ghci-ng-support t
-              haskell-enable-shm-support t
-              haskell-enable-hindent-style "chris-done")
+     haskell
      latex
      ;; markdown
      ;; org
@@ -217,18 +213,6 @@ layers configuration. You are free to put any user code."
         `(("." . ,(concat spacemacs-cache-directory "undo"))))
   (unless (file-exists-p (concat spacemacs-cache-directory "undo"))
     (make-directory (concat spacemacs-cache-directory "undo")))
-
-  ;; Racer
-  ;; (setq racer-cmd "/usr/bin/racer")
-  ;; (setq racer-rust-src-path "/usr/local/src/rust/src")
-  ;; (setenv "RUST_SRC_PATH" "/usr/local/src/rust/src")
-
-  ;; C
-  ;; (add-hook 'c-mode-common-hook '(lambda () (c-set-style "stroustrup")))
-
-  ;; Java
-  ;; (setq eclim-eclipse-dirs "/usr/lib/eclipse"
-  ;;       eclim-executable "/usr/lib/eclipse/eclim")
 
   ;; don't highlight inside braces
   (setq sp-highlight-pair-overlay nil)
