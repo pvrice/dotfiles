@@ -27,17 +27,16 @@ values."
      (c-c++ :variables
             c-c++-enable-clang-support t)
      emacs-lisp
-     ;; finance
      git
      (haskell :variables
               haskell-enable-ghc-mod-support t
               haskell-enable-ghci-ng-support t
               haskell-enable-shm-support t
               haskell-enable-hindent-style "chris-done")
-     ;; java
      latex
      ;; markdown
      ;; org
+     ranger
      ;; rust
      semantic
      (shell :variables
@@ -46,7 +45,7 @@ values."
             shell-default-term-shell "/usr/bin/fish")
      spell-checking
      syntax-checking
-     themes-megapack
+     unimpaired
      version-control
      )
    ;; List of additional packages that will be installed without being
@@ -96,11 +95,11 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Inconsolata"
-                               :size 9.0
-                               :weight normal
-                               :width normal
-                               :powerline-scale 1.1)
+   ;; dotspacemacs-default-font '("Inconsolata"
+   ;;                             :size 9.0
+   ;;                             :weight normal
+   ;;                             :width normal
+   ;;                             :powerline-scale 1.1)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The leader key accessible in `emacs state' and `insert state'
@@ -177,7 +176,7 @@ values."
    dotspacemacs-smooth-scrolling t
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
-   dotspacemacs-smartparens-strict-mode t
+   dotspacemacs-smartparens-strict-mode nil
    ;; Select a scope to highlight delimiters. Possible values are `any',
    ;; `current', `all' or `nil'. Default is `all' (highlight any scope and
    ;; emphasis the current one). (default 'all)
@@ -207,14 +206,7 @@ user code."
 layers configuration. You are free to put any user code."
 
   ;; Make evil-mode up/down operate in screen lines instead of logical lines
-  (define-key evil-motion-state-map "j" 'evil-next-visual-line) (define-key evil-motion-state-map "k" 'evil-previous-visual-line)
-
-  ;; Also in visual mode
-  (define-key evil-visual-state-map "j" 'evil-next-visual-line)
-  (define-key evil-visual-state-map "k" 'evil-previous-visual-line)
-
-  ;; Colors
-  (setq monokai-distinct-fringe-background t)
+  (spacemacs/toggle-visual-line-navigation-on)
 
   ;; Change powerline separator
   (setq powerline-default-separator 'bar)
@@ -227,16 +219,16 @@ layers configuration. You are free to put any user code."
     (make-directory (concat spacemacs-cache-directory "undo")))
 
   ;; Racer
-  (setq racer-cmd "/usr/bin/racer")
+  ;; (setq racer-cmd "/usr/bin/racer")
   ;; (setq racer-rust-src-path "/usr/local/src/rust/src")
-  (setenv "RUST_SRC_PATH" "/usr/local/src/rust/src")
+  ;; (setenv "RUST_SRC_PATH" "/usr/local/src/rust/src")
 
   ;; C
   ;; (add-hook 'c-mode-common-hook '(lambda () (c-set-style "stroustrup")))
 
   ;; Java
-  (setq eclim-eclipse-dirs "/usr/lib/eclipse"
-        eclim-executable "/usr/lib/eclipse/eclim")
+  ;; (setq eclim-eclipse-dirs "/usr/lib/eclipse"
+  ;;       eclim-executable "/usr/lib/eclipse/eclim")
 
   ;; don't highlight inside braces
   (setq sp-highlight-pair-overlay nil)
