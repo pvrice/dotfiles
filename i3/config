@@ -145,9 +145,6 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-for_window [class="(?i)mpv"] floating enable
-for_window [class="(?i)feh"] floating enable
-
 # Custom shortcuts
 bindcode 172 exec mpc toggle && pkill -RTMIN+11 i3blocks
 bindcode 173 exec mpc prev && pkill -RTMIN+11 i3blocks
@@ -196,6 +193,9 @@ bar {
         urgent_workspace #cc6633 #cc6633 #f9f8f5
   }
 }
+
+for_window [class="(?i)mpv"] floating enable
+for_window [class="(?i)feh"] floating enable
 
 for_window [class="."] border pixel 2
 for_window [class="Firefox"] border pixel 0
