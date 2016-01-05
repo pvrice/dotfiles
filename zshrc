@@ -11,8 +11,8 @@ export BROWSER="qutebrowser"
 export EDITOR="et"
 export PATH=$HOME/bin:/usr/local/bin:$HOME/.cabal/bin:$PATH
 
-alias et=emacsclient -t -a "" "$@"
-alias em=emacsclient -c -n -a "" "$@"
+alias et='emacsclient -t -a "" "$@"'
+alias em='emacsclient -c -n -a "" "$@"'
 
 ZSH_CACHE_DIR=$HOME/.oh-my-zsh-cache
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
