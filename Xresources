@@ -114,7 +114,7 @@ URxvt*matcher.button: 1
 ! URxvt*tab-fg:                         colour
 ! URxvt*tabbar-bg:                      colour
 ! URxvt*tabbar-fg:                      colour
-URxvt*url-launcher: firefox
+URxvt*url-launcher: qutebrowser
 
 ! #define base00 #161b1d
 ! #define base01 #1f292e
