@@ -103,7 +103,13 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(monokai)
+   dotspacemacs-themes '(monokai
+                         spacemacs-dark
+                         spacemacs-light
+                         solarized-light
+                         solarized-dark
+                         leuven
+                         zenburn)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
@@ -251,7 +257,7 @@ layers configuration. You are free to put any user code."
   (spacemacs/toggle-visual-line-navigation-on)
 
   ;; Change powerline separator
-  (setq powerline-default-separator 'arrow)
+  (setq powerline-default-separator 'bar)
 
   ;; Persistent undo
   (setq undo-tree-auto-save-history t
