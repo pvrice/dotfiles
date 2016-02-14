@@ -80,7 +80,7 @@ URxvt*letterSpace: -1
 ! URxvt*backspacekey:                   string
 ! URxvt*deletekey:                      string
 ! URxvt*print-pipe:                     string
-! URxvt*modifier:                       modifier
+URxvt*modifier: alt
 ! URxvt*cutchars:                       string
 ! URxvt*answerbackString:               string
 ! URxvt*secondaryScreen:                boolean
@@ -169,22 +169,40 @@ URxvt*url-launcher: qutebrowser
 ! #define base0F #d33682
 
 ! Monokai
-#define base00 #272822
-#define base01 #383830
-#define base02 #49483e
-#define base03 #75715e
-#define base04 #a59f85
-#define base05 #f8f8f2
-#define base06 #f5f4f1
-#define base07 #f9f8f5
-#define base08 #f92672
-#define base09 #fd971f
-#define base0A #f4bf75
-#define base0B #a6e22e
-#define base0C #a1efe4
-#define base0D #66d9ef
-#define base0E #ae81ff
-#define base0F #cc6633
+! #define base00 #272822
+! #define base01 #383830
+! #define base02 #49483e
+! #define base03 #75715e
+! #define base04 #a59f85
+! #define base05 #f8f8f2
+! #define base06 #f5f4f1
+! #define base07 #f9f8f5
+! #define base08 #f92672
+! #define base09 #fd971f
+! #define base0A #f4bf75
+! #define base0B #a6e22e
+! #define base0C #a1efe4
+! #define base0D #66d9ef
+! #define base0E #ae81ff
+! #define base0F #cc6633
+
+! Flat
+#define base00 #2c3e50
+#define base01 #34495e
+#define base02 #7f8c8d
+#define base03 #95a5a6
+#define base04 #bdc3c7
+#define base05 #e0e0e0
+#define base06 #f5f5f5
+#define base07 #ecf0f1
+#define base08 #e74c3c
+#define base09 #e67e22
+#define base0A #f1c40f
+#define base0B #2ecc71
+#define base0C #1abc9c
+#define base0D #3498db
+#define base0E #9b59b6
+#define base0F #be643c
 
 *.background:             base00
 *.foreground:             base04
@@ -192,6 +210,10 @@ URxvt*url-launcher: qutebrowser
 *.cursorColor:            base05
 *.pointerColorBackground: base02
 *.pointerColorForeground: base04
+
+*.scrollColor:            base05
+*.highlightColor:         base02
+*.highlightTextColor:     base04
 
 *.color0:                 base01
 *.color1:                 base08
