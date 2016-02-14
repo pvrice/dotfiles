@@ -7,11 +7,6 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 plugins=(archlinux autojump common-aliases git sudo systemd vi-mode history-substring-search)
 
-export BROWSER="qutebrowser"
-export EDITOR="et"
-export PATH=$HOME/bin:/usr/local/bin:$HOME/.cabal/bin:$PATH
-export SSH_AUTH_SOCK=/run/user/1000/ssh-agent.socket
-
 alias et='emacsclient -t -a "" "$@"'
 alias em='emacsclient -c -n -a "" "$@"'
 
