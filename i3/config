@@ -184,13 +184,13 @@ bar {
     # status_command i3status | ~/.i3/wrapper.py
     status_command i3blocks
     colors {
-        separator #e74c3c # 8
-        background #34495e # 1
-        statusline #3498db # d
-        focused_workspace #ecf0f1 #2ecc71 #ecf0f1 # 7b7
-        active_workspace #ecf0f1 #9b59b6 #ecf0f1 # 7e7
-        inactive_workspace #bdc3c7 #e0e0e0 #2c3e50 # 450
-        urgent_workspace #be643c #be643c #ecf0f1 # ff7
+        separator #f92672 # 8
+        background #383830 # 1
+        statusline #66d9ef # d
+        focused_workspace #f9f8f5 #a6e22e #f9f8f5 # 7b7
+        active_workspace #f9f8f5 #ae81ff #f9f8f5 # 7e7
+        inactive_workspace #a59f85 #f8f8f2 #272822 # 450
+        urgent_workspace #cc6633 #cc6633 #f9f8f5 # ff7
   }
 }
 
@@ -207,7 +207,7 @@ for_window [class="Steam"] border pixel 0
 for_window [class="gvim"] border pixel 0
 for_window [instance="Steam.exe"] border pixel 0
 
-client.focused #2ecc71 #2ecc71 #ecf0f1 #2ecc71 # bb7b
-client.focused_inactive #34495e #34495e #f5f5f5 #9b59b6 # 116e
-client.unfocused #34495e #34495e #e0e0e0 #7f8c8d # 1152
-client.urgent #be643c #be643c #ecf0f1 #e74c3c # ff78
+client.focused #a6e22e #a6e22e #f9f8f5 #a6e22e # bb7b
+client.focused_inactive #383830 #383830 #f5f4f1 #ae81ff # 116e
+client.unfocused #383830 #383830 #f8f8f2 #49483e # 1152
+client.urgent #cc6633 #cc6633 #f9f8f5 #f92672 # ff78

@@ -116,40 +116,6 @@ URxvt*matcher.button: 1
 ! URxvt*tabbar-fg:                      colour
 URxvt*url-launcher: qutebrowser
 
-! #define base00 #161b1d
-! #define base01 #1f292e
-! #define base02 #516d7b
-! #define base03 #5a7b8c
-! #define base04 #7195a8
-! #define base05 #7ea2b4
-! #define base06 #c1e4f6
-! #define base07 #ebf8ff
-! #define base08 #d22d72
-! #define base09 #935c25
-! #define base0A #8a8a0f
-! #define base0B #568c3b
-! #define base0C #2d8f6f
-! #define base0D #257fad
-! #define base0E #5d5db1
-! #define base0F #b72dd2
-
-! #define base00 #151515
-! #define base01 #202020
-! #define base02 #303030
-! #define base03 #505050
-! #define base04 #b0b0b0
-! #define base05 #d0d0d0
-! #define base06 #e0e0e0
-! #define base07 #f5f5f5
-! #define base08 #fb9fb1
-! #define base09 #eda987
-! #define base0A #ddb26f
-! #define base0B #acc267
-! #define base0C #12cfc0
-! #define base0D #6fc2ef
-! #define base0E #e1a3ee
-! #define base0F #deaf8f
-
 ! Solarized
 ! #define base00 #002b36
 ! #define base01 #073642
@@ -169,40 +135,22 @@ URxvt*url-launcher: qutebrowser
 ! #define base0F #d33682
 
 ! Monokai
-! #define base00 #272822
-! #define base01 #383830
-! #define base02 #49483e
-! #define base03 #75715e
-! #define base04 #a59f85
-! #define base05 #f8f8f2
-! #define base06 #f5f4f1
-! #define base07 #f9f8f5
-! #define base08 #f92672
-! #define base09 #fd971f
-! #define base0A #f4bf75
-! #define base0B #a6e22e
-! #define base0C #a1efe4
-! #define base0D #66d9ef
-! #define base0E #ae81ff
-! #define base0F #cc6633
-
-! Flat
-#define base00 #2c3e50
-#define base01 #34495e
-#define base02 #7f8c8d
-#define base03 #95a5a6
-#define base04 #bdc3c7
-#define base05 #e0e0e0
-#define base06 #f5f5f5
-#define base07 #ecf0f1
-#define base08 #e74c3c
-#define base09 #e67e22
-#define base0A #f1c40f
-#define base0B #2ecc71
-#define base0C #1abc9c
-#define base0D #3498db
-#define base0E #9b59b6
-#define base0F #be643c
+#define base00 #272822
+#define base01 #383830
+#define base02 #49483e
+#define base03 #75715e
+#define base04 #a59f85
+#define base05 #f8f8f2
+#define base06 #f5f4f1
+#define base07 #f9f8f5
+#define base08 #f92672
+#define base09 #fd971f
+#define base0A #f4bf75
+#define base0B #a6e22e
+#define base0C #a1efe4
+#define base0D #66d9ef
+#define base0E #ae81ff
+#define base0F #cc6633
 
 *.background:             base00
 *.foreground:             base04
