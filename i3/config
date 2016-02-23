@@ -87,20 +87,20 @@ bar {
     # status_command i3status
     status_command i3blocks
     colors {
-        separator #f92672 # 8
-        background #383830 # 1
-        statusline #66d9ef # d
-        focused_workspace #f9f8f5 #a6e22e #f9f8f5 # 7b7
-        active_workspace #f9f8f5 #ae81ff #f9f8f5 # 7e7
-        inactive_workspace #a59f85 #f8f8f2 #272822 # 450
-        urgent_workspace #cc6633 #cc6633 #f9f8f5 # ff7
+        separator #f2777a
+        background #393939
+        statusline #66cccc
+        focused_workspace #f2f0ec #99cc99 #f2f0ec
+        active_workspace #f2f0ec #cc99cc #f2f0ec
+        inactive_workspace #a09f93 #d3d0c8 #2d2d2d
+        urgent_workspace #d27b53 #d27b53 #f2f0ec
   }
 }
 
-client.focused #a6e22e #a6e22e #f9f8f5 #a6e22e # bb7b
-client.focused_inactive #383830 #383830 #f5f4f1 #ae81ff # 116e
-client.unfocused #383830 #383830 #f8f8f2 #49483e # 1152
-client.urgent #cc6633 #cc6633 #f9f8f5 #f92672 # ff78
+client.focused #99cc99 #99cc99 #393939 #99cc99
+client.focused_inactive #393939 #393939 #e8e6df #cc99cc
+client.unfocused #393939 #393939 #d3d0c8 #515151
+client.urgent #d27b53 #d27b53 #f2f0ec #f2777a
 
 # custom shortcuts
 bindcode 172 exec mpc toggle && pkill -RTMIN+11 i3blocks
