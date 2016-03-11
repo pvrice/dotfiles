@@ -1,12 +1,11 @@
-URxvt*font: xft:inconsolata:size=9,xft:droidsansjapanese:size=9,xft:freesans:size=9
-URxvt*boldFont: xft:inconsolata:bold:size=9,xft:droidsansjapanese:bold:size=9,xft:freesans:bold:size=9
-URxvt*italicFont: xft:inconsolata:italic:size=9,xft:droidsansjapanese:italic:size=9,xft:freesans:italic:size=9
-URxvt*boldItalicFont: xft:inconsolata:bold:italic:size=9,xft:droidsansjapanese:bold:italic:size=9,xft:freesans:bold:italic:size=9
-
-Emacs.font: Inconsolatazi4-9
+URxvt*font: xft:sourcecodepro:regular:size=8,xft:droidsansjapanese:size=8,xft:dejavusansmono:size=9
+URxvt*boldFont: xft:sourcecodepro:bold:size=8,xft:droidsansjapanese:bold:size=8,xft:dejavusansmono:bold:size=9
+URxvt*italicFont: xft:sourcecodepro:italic:size=8,xft:droidsansjapanese:italic:size=8,xft:dejavusansmono:italic:size=9
+URxvt*boldItalicFont: xft:sourcecodepro:bold:italic:size=8,xft:droidsansjapanese:bold:italic:size=8,xft:dejavusansmono:bold:italic:size=9
 
 URxvt*scrollBar: false
 URxvt*intensityStyles: false
+URxvt*letterSpace: -1
 URxvt*modifier: alt
 URxvt*perl-ext-common: default,matcher
 URxvt*matcher.button: 1

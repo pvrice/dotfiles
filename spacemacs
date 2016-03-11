@@ -11,7 +11,8 @@
      emacs-lisp
      eyebrowse
      git
-     haskell
+     (haskell :variables
+              haskell-enable-hindent-style "chris-done")
      latex
      ;; org
      ranger
@@ -49,10 +50,10 @@
                          leuven
                          zenburn)
    dotspacemacs-colorize-cursor-according-to-state t
-   dotspacemacs-default-font '("Inconsolata"
-                               :size 9.0
+   dotspacemacs-default-font '("Source Code Pro"
+                               :size 8.0
                                :weight normal
-                               :width normal
+                               :width condensed
                                :powerline-scale 1.1)
    dotspacemacs-leader-key "SPC"
    dotspacemacs-emacs-leader-key "M-m"

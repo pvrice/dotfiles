@@ -1,3 +1,5 @@
+. ~/.zshenv
+
 ZSH=/usr/share/oh-my-zsh/
 ZSH_THEME="jreese"
 HYPHEN_INSENSITIVE="true"
@@ -6,9 +8,6 @@ ENABLE_CORRECTION="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 plugins=(archlinux autojump common-aliases git sudo systemd vi-mode history-substring-search)
-
-alias et='emacsclient -t -a "" "$@"'
-alias em='emacsclient -c -n -a "" "$@"'
 
 ZSH_CACHE_DIR=$HOME/.oh-my-zsh-cache
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
