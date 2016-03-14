@@ -1,7 +1,7 @@
-URxvt*font: xft:sourcecodepro:regular:size=8,xft:droidsansjapanese:size=8,xft:dejavusansmono:size=9
-URxvt*boldFont: xft:sourcecodepro:bold:size=8,xft:droidsansjapanese:bold:size=8,xft:dejavusansmono:bold:size=9
-URxvt*italicFont: xft:sourcecodepro:italic:size=8,xft:droidsansjapanese:italic:size=8,xft:dejavusansmono:italic:size=9
-URxvt*boldItalicFont: xft:sourcecodepro:bold:italic:size=8,xft:droidsansjapanese:bold:italic:size=8,xft:dejavusansmono:bold:italic:size=9
+URxvt*font: xft:sourcecodepro:regular:size=9,xft:droidsansjapanese:size=9,xft:dejavusansmono:size=9
+URxvt*boldFont: xft:sourcecodepro:bold:size=9,xft:droidsansjapanese:bold:size=9,xft:dejavusansmono:bold:size=9
+URxvt*italicFont: xft:sourcecodepro:italic:size=9,xft:droidsansjapanese:italic:size=9,xft:dejavusansmono:italic:size=9
+URxvt*boldItalicFont: xft:sourcecodepro:bold:italic:size=9,xft:droidsansjapanese:bold:italic:size=9,xft:dejavusansmono:bold:italic:size=9
 
 URxvt*scrollBar: false
 URxvt*intensityStyles: false
