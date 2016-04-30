@@ -1,9 +1,14 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
+" general
 Plug 'airblade/vim-gitgutter'
+Plug 'benekastah/neomake'
 Plug 'chriskempson/base16-vim'
-Plug 'junegunn/fzf.vim'
+Plug 'ervandew/supertab'
 Plug 'justinmk/vim-sneak'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'shougo/deoplete.nvim'
+Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
@@ -13,12 +18,21 @@ Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+" haskell
+Plug 'shougo/vimproc', { 'do': 'make'} | Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
+Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
+Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
+
+" c
+Plug 'zchee/deoplete-clang', { 'for': 'c' }
+
 call plug#end()
+
 filetype plugin indent on
 syntax on
 
+colorscheme base16-harmonic16
 let base16colorspace=256
-colorscheme base16-eighties
 set background=dark
 
 set number
@@ -49,7 +63,7 @@ set splitright
 set cursorline
 set report=0
 
-" set autochdir
+set autochdir
 set confirm
 set undofile
 
@@ -81,52 +95,97 @@ vnoremap < <gv
 vnoremap > >gv
 
 let mapleader="\<Space>"
-map <Leader>w :w<CR>
-map <Leader>q :q<CR>
-map <Leader>wq :wq<CR>
 
-map <Leader><Space> /
-map <Leader><M-Space> ?
-map <silent> <Leader>sc :nohlsearch<CR>
+nmap <Leader>fs :w<CR>
+nmap <Leader>ft :NERDTreeToggle<CR>
+nmap <Leader>qq :q<CR>
+nmap <Leader>qa :qall<CR>
+nmap <Leader>qw :wqall<CR>
+nmap <Leader>zz ZZ
 
-map <Leader>sc :q<CR>
-map <Leader>s- :split<CR>
-map <Leader>s/ :vsplit<CR>
-map <Leader>sj <C-W>j
-map <Leader>sk <C-W>k
-map <Leader>sh <C-W>h
-map <Leader>sl <C-W>l
+nmap <Leader>ss /
+nmap <Leader>sS ?
+nmap <silent> <Leader>sc :nohlsearch<CR>
 
-map <Leader>bd :bdelete<CR>
-map <silent> <Leader>l :bnext<CR>
-map <silent> <Leader>h :bprev<CR>
+nmap <silent> <Leader>w- :split<CR>
+nmap <silent> <Leader>w/ :vsplit<CR>
+nmap <Leader>wj <C-W>j
+nmap <Leader>wk <C-W>k
+nmap <Leader>wh <C-W>h
+nmap <Leader>wl <C-W>l
 
-map <Leader>tn :tabnew<CR>
-map <Leader>to :tabonly<CR>
-map <Leader>td :tabclose<CR>
-map <silent> <C-j> :tabnext<CR>
-map <silent> <C-k> :tabprev<CR>
+nmap <silent> <Leader>bd :bdelete<CR>
+nmap <silent> <Leader>bn :bnext<CR>
+nmap <silent> <Leader>bp :bprev<CR>
+
+" toggles from vim-unimpaired
+" map <Leader>ttb cob  " background
+" map <Leader>ttc coc  " cursorline
+" map <Leader>ttd cod  " diff
+" map <Leader>tth coh  " hlsearch
+" map <Leader>tti coi  " ignorecase
+" map <Leader>ttl col  " list
+" map <Leader>ttn con  " number
+" map <Leader>ttr cor  " relativenumber
+" map <Leader>tts cos  " spell
+" map <Leader>ttu cou  " cursorcolumn
+" map <Leader>ttv cov  " virtualedit
+" map <Leader>ttw cow  " wrap
+" map <Leader>ttx cox  " cursorline cursorcolumn
+
+" gitgutter
+let g:gitgutter_signs = 0
+let g:gitgutter_map_keys = 0
+nmap [og :GitGutterSignsEnable<CR>
+nmap ]og :GitGutterSignsDisable<CR>
+nmap cog :GitGutterSignsToggle<CR>
+nmap <Leader>gn <Plug>GitGutterNextHunk
+nmap <Leader>gp <Plug>GitGutterPrevHunk
+nmap <Leader>gg <Plug>GitGutterStageHunk
+nmap <Leader>gu <Plug>GitGutterRevertHunk
+nmap <Leader>gv <Plug>GitGutterPreviewHunk
+
+map <Leader>; gc
+nmap <Leader>;; gcc
 
 let g:lasttab = 1
-nmap <silent> <Leader>tt :exe "tabn ".g:lasttab<CR>
+nmap <silent> <Leader>tj :exe "tabn ".g:lasttab<CR>
 au TabLeave * let g:lasttab = tabpagenr()
 
-map <Leader>cc :botright cope<CR>
-map <Leader>cn :cn<CR>
-map <Leader>cp :cp<CR>
+nmap <Leader>ce :botright cope<CR>
+nmap <Leader>cn :cn<CR>
+nmap <Leader>cp :cp<CR>
+
+nmap <Leader>le :botright lope<CR>
+nmap <Leader>ln :lne<CR>
+nmap <Leader>lp :lp<CR>
+
+nmap <silent> <Leader>ht :GhcModType<CR>
+nmap <silent> <Leader>hT :GhcModTypeInsert<CR>
+nmap <silent> <Leader>hc :GhcModTypeClear<CR>
+nmap <silent> <Leader>hs :GhcModSplitFunCase<CR>
 
 vnoremap <silent> * :call VisualSelection('f', '')<CR>
 vnoremap <silent> # :call VisualSelection('b', '')<CR>
 
 " fzf
-map <Leader>ff :Files<CR>
-map <Leader>bb :Buffers<CR>
-map <Leader>sl :Lines<CR>
-map <Leader>ww :Windows<CR>
+" nmap <Leader>ff :Files<CR>
+" nmap <Leader>bb :Buffers<CR>
+" nmap <Leader>sl :Lines<CR>
+" nmap <Leader>ww :Windows<CR>
 
 " sneak
 let g:sneak#streak = 1
 
 " airline
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#hunks#non_zero_only = 1
+
+" deoplete
+let g:deoplete#enable_at_startup = 1
+
+" neco-ghc
+let g:necoghc_enable_detailed_browse = 1
+
+" neomake
+autocmd! BufWritePost * Neomake

@@ -1,53 +1,42 @@
+Xft.antialias: 1
+Xft.autohint:  0
+Xft.dpi:       96
+Xft.hinting:   1
+Xft.hintstyle: hintfull
+Xft.lcdfilter: lcddefault
+Xft.rgba:      rgb
+
 URxvt*font: xft:Sauce Code Powerline:regular:size=9,xft:droidsansjapanese:size=9,xft:dejavusansmono:size=9
 URxvt*boldFont: xft:Sauce Code Powerline:bold:size=9,xft:droidsansjapanese:bold:size=9,xft:dejavusansmono:bold:size=9
 URxvt*italicFont: xft:Sauce Code Powerline:italic:size=9,xft:droidsansjapanese:italic:size=9,xft:dejavusansmono:italic:size=9
 URxvt*boldItalicFont: xft:Sauce Code Powerline:bold:italic:size=9,xft:droidsansjapanese:bold:italic:size=9,xft:dejavusansmono:bold:italic:size=9
 
-Emacs.font: xft:Sauce Code Powerline:regular:size=9,xft:droidsansjapanese:size=9,xft:dejavusansmono:size=9
+Emacs.font: Sauce Code Powerline-9
 
 URxvt*scrollBar: false
 URxvt*intensityStyles: false
-URxvt*letterSpace: -1
+URxvt*letterSpace: -2
 URxvt*modifier: alt
 URxvt*perl-ext-common: default,matcher
 URxvt*matcher.button: 1
 URxvt*url-launcher: qutebrowser
 
-! Monokai
-! #define base00 #272822
-! #define base01 #383830
-! #define base02 #49483e
-! #define base03 #75715e
-! #define base04 #a59f85
-! #define base05 #f8f8f2
-! #define base06 #f5f4f1
-! #define base07 #f9f8f5
-! #define base08 #f92672
-! #define base09 #fd971f
-! #define base0A #f4bf75
-! #define base0B #a6e22e
-! #define base0C #a1efe4
-! #define base0D #66d9ef
-! #define base0E #ae81ff
-! #define base0F #cc6633
-
-! Eighties
-#define base00 #2d2d2d
-#define base01 #393939
-#define base02 #515151
-#define base03 #747369
-#define base04 #a09f93
-#define base05 #d3d0c8
-#define base06 #e8e6df
-#define base07 #f2f0ec
-#define base08 #f2777a
-#define base09 #f99157
-#define base0A #ffcc66
-#define base0B #99cc99
-#define base0C #66cccc
-#define base0D #6699cc
-#define base0E #cc99cc
-#define base0F #d27b53
+#define base00 #101212
+#define base01 #222524
+#define base02 #343837
+#define base03 #474d4b
+#define base04 #727977
+#define base05 #8b9190
+#define base06 #a7acab
+#define base07 #c8cccb
+#define base08 #e66789
+#define base09 #e68567
+#define base0A #e6c467
+#define base0B #89e667
+#define base0C #67e6c4
+#define base0D #6789e6
+#define base0E #c467e6
+#define base0F #e667c8
 
 *.background:             base00
 *.foreground:             base04

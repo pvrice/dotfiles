@@ -1,5 +1,7 @@
 . ~/.zshenv
 
+export KEYTIMEOUT=1
+
 ZSH=/usr/share/oh-my-zsh/
 ZSH_THEME="jreese"
 HYPHEN_INSENSITIVE="true"
@@ -16,7 +18,7 @@ fi
 
 source $ZSH/oh-my-zsh.sh
 
-source $HOME/bin/base16-eighties.dark.sh
+source $HOME/bin/base16-harmonic16.dark.sh
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/doc/pkgfile/command-not-found.zsh

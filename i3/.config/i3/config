@@ -80,6 +80,24 @@ mode "resize" {
         bindcode Control+34 mode "default"
 }
 
+set $base00 #101212
+set $base01 #222524
+set $base02 #343837
+set $base03 #474d4b
+set $base04 #727977
+set $base05 #8b9190
+set $base06 #a7acab
+set $base07 #c8cccb
+set $base08 #e66789
+set $base09 #e68567
+set $base0A #e6c467
+set $base0B #89e667
+set $base0C #67e6c4
+set $base0D #6789e6
+set $base0E #c467e6
+set $base0F #e667c8
+
+
 bindsym $mod+q mode "$mode_system"
 bar {
     position      top
@@ -87,20 +105,20 @@ bar {
     # status_command i3status
     status_command i3blocks
     colors {
-        separator #f2777a
-        background #393939
-        statusline #66cccc
-        focused_workspace #f2f0ec #99cc99 #f2f0ec
-        active_workspace #f2f0ec #cc99cc #f2f0ec
-        inactive_workspace #a09f93 #d3d0c8 #2d2d2d
-        urgent_workspace #d27b53 #d27b53 #f2f0ec
+        separator $base08
+        background $base01
+        statusline $base0C
+        focused_workspace $base03 $base0B $base02
+        active_workspace $base03 $base0F $base02
+        inactive_workspace $base04 $base07 $base01
+        urgent_workspace $base02 $base09 $base01
   }
 }
 
-client.focused #99cc99 #99cc99 #393939 #99cc99
-client.focused_inactive #393939 #393939 #e8e6df #cc99cc
-client.unfocused #393939 #393939 #d3d0c8 #515151
-client.urgent #d27b53 #d27b53 #f2f0ec #f2777a
+client.focused $base0B $base0B $base01 $base01
+client.focused_inactive $base01 $base01 $base07 $base01
+client.unfocused $base01 $base01 $base06 $base01
+client.urgent $base02 $base08 $base07 $base08
 
 # custom shortcuts
 bindcode 172 exec mpc toggle && pkill -RTMIN+11 i3blocks
@@ -111,6 +129,10 @@ bindcode 121 exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blo
 bindcode 122 exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks && pkill -RTMIN+11 i3blocks
 bindcode 123 exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks && pkill -RTMIN+11 i3blocks
 bindcode 107 exec scrot ~/Pictures/screenshots/%Y-%m-%d-%T-screenshot.png
+
+workspace_auto_back_and_forth yes
+bindsym $mod+z workspace back_and_forth
+bindsym $mod+Shift+z move container to workspace back_and_forth
 
 set $Locker i3lock && sleep 1
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
@@ -132,8 +154,11 @@ for_window [class="(?i)feh"] floating enable
 
 for_window [class="."] border pixel 2
 for_window [class="Firefox"] border pixel 0
+for_window [class="cantata"] border pixel 0
+for_window [class="transmission"] border pixel 0
 for_window [class="qutebrowser"] border pixel 0
 for_window [title="Google Chrome"] border pixel 0
+for_window [class="google-chrome"] border pixel 0
 for_window [class="Eclipse"] border pixel 0
 for_window [class="Steam"] border pixel 0
 for_window [instance="Steam.exe"] border pixel 0
