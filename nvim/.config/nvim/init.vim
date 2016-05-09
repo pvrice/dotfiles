@@ -101,10 +101,7 @@ nmap <Leader>ft :NERDTreeToggle<CR>
 nmap <Leader>qq :q<CR>
 nmap <Leader>qa :qall<CR>
 nmap <Leader>qw :wqall<CR>
-nmap <Leader>zz ZZ
 
-nmap <Leader>ss /
-nmap <Leader>sS ?
 nmap <silent> <Leader>sc :nohlsearch<CR>
 
 nmap <silent> <Leader>w- :split<CR>
@@ -113,6 +110,7 @@ nmap <Leader>wj <C-W>j
 nmap <Leader>wk <C-W>k
 nmap <Leader>wh <C-W>h
 nmap <Leader>wl <C-W>l
+nmap <Leader>wz <C-W>z
 
 nmap <silent> <Leader>bd :bdelete<CR>
 nmap <silent> <Leader>bn :bnext<CR>
@@ -141,17 +139,14 @@ nmap ]og :GitGutterSignsDisable<CR>
 nmap cog :GitGutterSignsToggle<CR>
 nmap <Leader>gn <Plug>GitGutterNextHunk
 nmap <Leader>gp <Plug>GitGutterPrevHunk
-nmap <Leader>gg <Plug>GitGutterStageHunk
+nmap <Leader>gs <Plug>GitGutterStageHunk
 nmap <Leader>gu <Plug>GitGutterRevertHunk
 nmap <Leader>gv <Plug>GitGutterPreviewHunk
 
 map <Leader>; gc
 nmap <Leader>;; gcc
 
-let g:lasttab = 1
-nmap <silent> <Leader>tj :exe "tabn ".g:lasttab<CR>
-au TabLeave * let g:lasttab = tabpagenr()
-
+" nmap <Leader>cc :Neomake<CR>
 nmap <Leader>ce :botright cope<CR>
 nmap <Leader>cn :cn<CR>
 nmap <Leader>cp :cp<CR>
@@ -160,10 +155,11 @@ nmap <Leader>le :botright lope<CR>
 nmap <Leader>ln :lne<CR>
 nmap <Leader>lp :lp<CR>
 
-nmap <silent> <Leader>ht :GhcModType<CR>
-nmap <silent> <Leader>hT :GhcModTypeInsert<CR>
-nmap <silent> <Leader>hc :GhcModTypeClear<CR>
-nmap <silent> <Leader>hs :GhcModSplitFunCase<CR>
+autocmd! FileType haskell
+            \ nmap <silent> <Leader>mt :GhcModType<CR> |
+            \ nmap <silent> <Leader>mT :GhcModTypeInsert<CR> |
+            \ nmap <silent> <Leader>mc :GhcModTypeClear<CR> |
+            \ nmap <silent> <Leader>ms :GhcModSplitFunCase<CR>
 
 vnoremap <silent> * :call VisualSelection('f', '')<CR>
 vnoremap <silent> # :call VisualSelection('b', '')<CR>
