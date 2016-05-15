@@ -1,5 +1,5 @@
 typeset -U path
-path=(~/bin ~/.local/bin $path[@])
+path=(~/bin ~/.local/bin ~/.gem/ruby/2.3.0/bin $path[@])
 browser=qutebrowser
 visual=nvim
 editor=nvim

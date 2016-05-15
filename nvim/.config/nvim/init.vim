@@ -5,6 +5,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'benekastah/neomake'
 Plug 'chriskempson/base16-vim'
 Plug 'ervandew/supertab'
+Plug 'jiangmiao/auto-pairs'
 Plug 'justinmk/vim-sneak'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'shougo/deoplete.nvim'
@@ -185,3 +186,5 @@ let g:necoghc_enable_detailed_browse = 1
 
 " neomake
 autocmd! BufWritePost * Neomake
+
+let g:AutoPairsFlyMode = 1
