@@ -1,0 +1,212 @@
+# Default config for sway
+#
+# Copy this to ~/.config/sway/config and edit it to your liking.
+#
+# Read `man 5 sway` for a complete reference.
+#
+# Sway is a work in progress. Some of these defaults are currently unimplemented.
+
+
+### Variables
+#
+# Logo key. Use Mod1 for Alt.
+set $mod Mod4
+# Your preferred terminal emulator
+set $term urxvt
+# Your preferred application launcher
+set $menu j4-dmenu-desktop
+
+### Output configuration
+#
+# Default wallpaper (more resolutions are available in /usr/share/sway/)
+output * bg /usr/share/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+#
+# Example output configuration:
+#
+output DP-1 resolution 2560x1440 position 0,0
+output DVI-I-1 resolution 1920x1080 position 2560,360
+#
+# You can get the names of your outputs by running swaymsg -t get_outputs
+
+### Key bindings
+#
+# Basics:
+#
+    # start a terminal
+    bindsym $mod+Return exec $term
+
+    # kill focused window
+    bindsym $mod+Shift+q kill
+
+    # start your launcher
+    bindsym $mod+d exec $menu
+
+    # Drag floating windows by holding down $mod and left mouse button.
+    # Resize them with right mouse button + $mod.
+    # Despite the name, also works for non-floating windows.
+    # Change normal to inverse to use left mouse button for resizing and right
+    # mouse button for dragging.
+    floating_modifier $mod normal
+
+    # reload the configuration file
+    bindsym $mod+Shift+c reload
+
+    # exit sway (logs you out of your wayland session)
+    bindsym $mod+Shift+e exit
+#
+# Moving around:
+#
+    # Move your focus around with $mod+[h|j|k|l], like vim
+    bindsym $mod+h focus left
+    bindsym $mod+j focus down
+    bindsym $mod+k focus up
+    bindsym $mod+l focus right
+    # or use $mod+[up|down|left|right]
+    bindsym $mod+Left focus left
+    bindsym $mod+Down focus down
+    bindsym $mod+Up focus up
+    bindsym $mod+Right focus right
+
+    # _move_ the focused window with the same, but add Shift
+    bindsym $mod+Shift+h move left
+    bindsym $mod+Shift+j move down
+    bindsym $mod+Shift+k move up
+    bindsym $mod+Shift+l move right
+    # ditto, with arrow keys
+    bindsym $mod+Shift+Left move left
+    bindsym $mod+Shift+Down move down
+    bindsym $mod+Shift+Up move up
+    bindsym $mod+Shift+Right move right
+#
+# Workspaces:
+#
+    # switch to workspace
+    bindsym $mod+1 workspace 1
+    bindsym $mod+2 workspace 2
+    bindsym $mod+3 workspace 3
+    bindsym $mod+4 workspace 4
+    bindsym $mod+5 workspace 5
+    bindsym $mod+6 workspace 6
+    bindsym $mod+7 workspace 7
+    bindsym $mod+8 workspace 8
+    bindsym $mod+9 workspace 9
+    bindsym $mod+0 workspace 10
+    # move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace 1
+    bindsym $mod+Shift+2 move container to workspace 2
+    bindsym $mod+Shift+3 move container to workspace 3
+    bindsym $mod+Shift+4 move container to workspace 4
+    bindsym $mod+Shift+5 move container to workspace 5
+    bindsym $mod+Shift+6 move container to workspace 6
+    bindsym $mod+Shift+7 move container to workspace 7
+    bindsym $mod+Shift+8 move container to workspace 8
+    bindsym $mod+Shift+9 move container to workspace 9
+    bindsym $mod+Shift+0 move container to workspace 10
+    # Note: workspaces can have any name you want, not just numbers.
+    # We just use 1-10 as the default.
+#
+# Layout stuff:
+#
+    # You can "split" the current object of your focus with
+    # $mod+b or $mod+v, for horizontal and vertical splits
+    # respectively.
+    bindsym $mod+b splith
+    bindsym $mod+v splitv
+
+    # Switch the current container between different layout styles
+    bindsym $mod+s layout stacking
+    bindsym $mod+w layout tabbed
+    bindsym $mod+e layout toggle split
+
+    # Make the current focus fullscreen
+    bindsym $mod+f fullscreen
+
+    # Toggle the current focus between tiling and floating mode
+    bindsym $mod+Shift+space floating toggle
+
+    # Swap focus between the tiling area and the floating area
+    bindsym $mod+space focus mode_toggle
+
+    # move focus to the parent container
+    bindsym $mod+a focus parent
+#
+# Scratchpad:
+#
+    # Sway has a "scratchpad", which is a bag of holding for windows.
+    # You can send windows there and get them back later.
+
+    # Move the currently focused window to the scratchpad
+    bindsym $mod+Shift+minus move scratchpad
+
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    # If there are multiple scratchpad windows, this command cycles through them.
+    bindsym $mod+minus scratchpad show
+
+#
+# Status Bar:
+#
+bar {
+    position top
+    status_command i3blocks
+    colors {
+        statusline #ffffff
+        background #323232
+        inactive_workspace #32323200 #32323200 #5c5c5c
+    }
+}
+# Read sway-bar(5) for more information about this section.
+
+# You may want this:
+#
+include ~/.config/sway/conf.d/*
+#
+# Protip:
+#
+# include ~/.config/sway/`hostname`/*
+
+#
+# Other
+#
+    # shortcuts
+    bindcode 172 exec mpc toggle && pkill -RTMIN+11 i3blocks
+    bindcode 173 exec mpc prev && pkill -RTMIN+11 i3blocks
+    bindcode 171 exec mpc next && pkill -RTMIN+11 i3blocks
+    bindcode 174 exec mpc stop && pkill -RTMIN+11 i3blocks
+    bindcode 121 exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks && pkill -RTMIN+11 i3blocks
+    bindcode 122 exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks && pkill -RTMIN+11 i3blocks
+    bindcode 123 exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks && pkill -RTMIN+11 i3blocks
+
+    # exit options
+    bindsym $mod+q mode "$mode_system"
+    set $Locker i3lock && sleep 1
+    set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+    mode "$mode_system" {
+        bindsym l exec --no-startup-id $Locker, mode "default"
+        bindsym e exec --no-startup-id i3-msg exit, mode "default"
+        bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
+        bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
+        bindsym r exec --no-startup-id systemctl reboot, mode "default"
+        bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindcode Control+34 mode "default"
+    }
+
+    # individual prgorams
+    for_window [class="(?i)mpv"] floating enable
+    for_window [class="(?i)feh"] floating enable
+    for_window [instance="qb-nvim"] floating enable
+
+    for_window [class="Firefox"] border pixel 0
+    for_window [class="cantata"] border pixel 0
+    for_window [class="transmission"] border pixel 0
+    for_window [class="qutebrowser"] border pixel 0
+    for_window [title="Google Chrome"] border pixel 0
+    for_window [class="google-chrome"] border pixel 0
+    for_window [class="Eclipse"] border pixel 0
+    for_window [class="Steam"] border pixel 0
+    for_window [instance="Steam.exe"] border pixel 0
+
+    # font
+    font pango:sourcecodeproforpowerline, fontawesome 9
