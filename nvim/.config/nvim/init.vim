@@ -3,7 +3,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 " general
 Plug 'airblade/vim-gitgutter'
 Plug 'benekastah/neomake'
-Plug 'chriskempson/base16-vim'
 Plug 'ervandew/supertab'
 Plug 'jiangmiao/auto-pairs'
 Plug 'justinmk/vim-sneak'
@@ -32,7 +31,7 @@ call plug#end()
 filetype plugin indent on
 syntax on
 
-colorscheme base16-harmonic16
+colorscheme base16-materia
 let base16colorspace=256
 set background=dark
 

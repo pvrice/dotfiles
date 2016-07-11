@@ -80,24 +80,6 @@ mode "resize" {
         bindcode Control+34 mode "default"
 }
 
-set $base00 #101212
-set $base01 #222524
-set $base02 #343837
-set $base03 #474d4b
-set $base04 #727977
-set $base05 #8b9190
-set $base06 #a7acab
-set $base07 #c8cccb
-set $base08 #e66789
-set $base09 #e68567
-set $base0A #e6c467
-set $base0B #89e667
-set $base0C #67e6c4
-set $base0D #6789e6
-set $base0E #c467e6
-set $base0F #e667c8
-
-
 bindsym $mod+q mode "$mode_system"
 bar {
     position      top
@@ -105,20 +87,20 @@ bar {
     # status_command i3status
     status_command i3blocks
     colors {
-        separator $base08
-        background $base01
-        statusline $base0C
-        focused_workspace $base03 $base0B $base02
-        active_workspace $base03 $base0F $base02
-        inactive_workspace $base04 $base07 $base01
-        urgent_workspace $base02 $base09 $base01
+        separator #ec5f67
+        background #2c393f
+        statusline #80cbc4
+        focused_workspace #707880 #8bd649 #37474f
+        active_workspace #707880 #ec5f67 #37474f
+        inactive_workspace #c9ccd3 #ffffff #2c393f
+        urgent_workspace #37474f #ea9560 #2c393f
   }
 }
 
-client.focused $base0B $base0B $base01 $base01
-client.focused_inactive $base01 $base01 $base07 $base01
-client.unfocused $base01 $base01 $base06 $base01
-client.urgent $base02 $base08 $base07 $base08
+client.focused #8bd649 #8bd649 #2c393f #2c393f
+client.focused_inactive #2c393f #2c393f #ffffff #2c393f
+client.unfocused #2c393f #2c393f #d5dbe5 #2c393f
+client.urgent #37474f #ec5f67 #ffffff #ec5f67
 
 # custom shortcuts
 bindcode 172 exec mpc toggle && pkill -RTMIN+11 i3blocks

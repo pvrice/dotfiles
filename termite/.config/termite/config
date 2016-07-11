@@ -32,34 +32,42 @@ filter_unmatched_urls = true
 #modify_other_keys = false
 
 [colors]
-#cursor = #dcdccc
-foreground = #dcdccc
-foreground_bold = #ffffff
-background = #3f3f3f
+#cursor = #cdd3de
+foreground = #cdd3de
+# not sure when this is used
+#foreground_bold = #ffffff
+background = #263238
 
 # 20% background transparency (requires a compositor)
 #background = rgba(63, 63, 63, 0.8)
 
 # if unset, will reverse foreground and background
-highlight = #2f2f2f
+# huh???
+#highlight = #2f2f2f
 
 # colors from color0 to color254 can be set
-color0 = #3f3f3f
-color1 = #705050
-color2 = #60b48a
-color3 = #dfaf8f
-color4 = #506070
-color5 = #dc8cc3
-color6 = #8cd0d3
-color7 = #dcdccc
-color8 = #709080
-color9 = #dca3a3
-color10 = #c3bf9f
-color11 = #f0dfaf
-color12 = #94bff3
-color13 = #ec93d3
-color14 = #93e0e3
+color0 =  #263238
+color1 =  #ec5f67
+color2 =  #8bd649
+color3 =  #ffcc00
+color4 =  #89ddff
+color5 =  #82aaff
+color6 =  #80cbc4
+color7 =  #cdd3de
+color8 =  #707880
+color9 =  #ec5f67
+color10 = #8bd649
+color11 = #ffcc00
+color12 = #89ddff
+color13 = #82aaff
+color14 = #80cbc4
 color15 = #ffffff
+color16 = #ea9560
+color17 = #ec5f67
+color18 = #2c393f
+color19 = #37474f
+color20 = #c9ccd3
+color21 = #d5dbe5
 
 [hints]
 #font = Monospace 12
