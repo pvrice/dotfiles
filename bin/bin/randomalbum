@@ -1,0 +1,2 @@
+#!/bin/zsh
+mpc -q clear && mpc -q findadd album "$(mpc -f %album% playlist Listening | uniq | shuf -n 1)" && mpc -q random off && mpc -f %albumartist%\ -\ %album% play | head -1 && pkill -RTMIN+11 i3blocks
