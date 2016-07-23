@@ -72,7 +72,7 @@ line() {
 
 case $BLOCK_BUTTON in
     1) mpc -q toggle && line ;;
-    2) mpc -q clear && mpc ls | mpc add && mpc -q random on && mpc -q play ;;
+    2) mpc -q clear && mpc listall | mpc add && mpc -q random on && mpc -q play ;;
     3) mpc -q stop ;;
     4) mpc -q volume $(inc) ;;
     5) mpc -q volume $(dec) ;;
