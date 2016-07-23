@@ -1,8 +1,0 @@
-bindcode 172 exec mpc toggle && pkill -RTMIN+11 i3blocks
-bindcode 173 exec mpc prev && pkill -RTMIN+11 i3blocks
-bindcode 171 exec mpc next && pkill -RTMIN+11 i3blocks
-bindcode 174 exec mpc stop && pkill -RTMIN+11 i3blocks
-bindcode 121 exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks && pkill -RTMIN+11 i3blocks
-bindcode 122 exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks && pkill -RTMIN+11 i3blocks
-bindcode 123 exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks && pkill -RTMIN+11 i3blocks
-# bindcode 107 exec scrot ~/Pictures/screenshots/%Y-%m-%d-%T-screenshot.png
