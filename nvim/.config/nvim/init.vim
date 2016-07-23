@@ -6,8 +6,10 @@ Plug 'benekastah/neomake'
 Plug 'ervandew/supertab'
 Plug 'jiangmiao/auto-pairs'
 Plug 'justinmk/vim-sneak'
+Plug 'peterrincker/vim-argumentative'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'shougo/deoplete.nvim'
+Plug 'shougo/unite.vim'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
@@ -63,7 +65,7 @@ set splitright
 set cursorline
 set report=0
 
-set autochdir
+" set autochdir
 set confirm
 set undofile
 
@@ -169,6 +171,17 @@ vnoremap <silent> # :call VisualSelection('b', '')<CR>
 " nmap <Leader>bb :Buffers<CR>
 " nmap <Leader>sl :Lines<CR>
 " nmap <Leader>ww :Windows<CR>
+
+" unite
+nmap <Leader>ff :Unite file/async<CR>
+nmap <Leader>fr :Unite file_rec/async<CR>
+
+nmap <Leader>bb :Unite buffer<CR>
+
+nmap <Leader>/ :Unite grep:.<CR>
+
+let g:unite_source_history_yank_enable = 1
+nmap <Leader>y :Unite history/yank<CR>
 
 " sneak
 let g:sneak#streak = 1
