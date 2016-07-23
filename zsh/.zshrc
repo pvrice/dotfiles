@@ -9,7 +9,7 @@ DISABLE_AUTO_UPDATE="true"
 # ENABLE_CORRECTION="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-plugins=(archlinux autojump common-aliases git sudo systemd vi-mode history-substring-search)
+plugins=(archlinux autojump common-aliases git systemd vi-mode history-substring-search)
 
 ZSH_CACHE_DIR=$HOME/.oh-my-zsh-cache
 if [[ ! -d $ZSH_CACHE_DIR ]]; then

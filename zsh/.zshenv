@@ -1,3 +1,6 @@
+typeset -U path
+path=(~/bin ~/.local/bin $path[@])
+TERMINAL=termite
 BROWSER=qutebrowser
 VISUAL=nvim
 EDITOR=nvim
