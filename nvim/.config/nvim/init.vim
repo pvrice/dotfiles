@@ -9,7 +9,7 @@ Plug 'justinmk/vim-sneak'
 Plug 'peterrincker/vim-argumentative'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'shougo/deoplete.nvim'
-Plug 'shougo/unite.vim'
+Plug 'shougo/neomru.vim' | Plug 'shougo/unite.vim'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
@@ -26,7 +26,7 @@ Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 
 " c
-Plug 'zchee/deoplete-clang', { 'for': 'c' }
+" Plug 'zchee/deoplete-clang', { 'for': 'c' }
 
 call plug#end()
 
@@ -45,6 +45,7 @@ set tabstop=4
 set shiftwidth=4
 set shiftround
 set smartindent
+set textwidth=80
 
 set nrformats+=alpha
 
@@ -90,6 +91,8 @@ map Y y$
 
 map Q <nop>
 
+map q: :q
+
 cnoremap <C-A> <Home>
 cnoremap <C-E> <End>
 
@@ -98,90 +101,78 @@ vnoremap > >gv
 
 let mapleader="\<Space>"
 
-nmap <Leader>fs :w<CR>
-nmap <Leader>ft :NERDTreeToggle<CR>
-nmap <Leader>qq :q<CR>
-nmap <Leader>qa :qall<CR>
-nmap <Leader>qw :wqall<CR>
+map <Leader> <nop>
 
-nmap <silent> <Leader>sc :nohlsearch<CR>
+nnoremap <Leader>fs :w<CR>
+nnoremap <Leader>ft :NERDTreeToggle<CR>
+nnoremap <Leader>qq :qall<CR>
+nnoremap <Leader>qw :wqall<CR>
 
-nmap <silent> <Leader>w- :split<CR>
-nmap <silent> <Leader>w/ :vsplit<CR>
-nmap <Leader>wj <C-W>j
-nmap <Leader>wk <C-W>k
-nmap <Leader>wh <C-W>h
-nmap <Leader>wl <C-W>l
-nmap <Leader>wz <C-W>z
+nnoremap <silent> <Leader>sc :nohlsearch<CR>
 
-nmap <silent> <Leader>bd :bdelete<CR>
-nmap <silent> <Leader>bn :bnext<CR>
-nmap <silent> <Leader>bp :bprev<CR>
+nnoremap <silent> <Leader>w- :split<CR>
+nnoremap <silent> <Leader>w/ :vsplit<CR>
+" stupid
+nnoremap <BS>  <C-W>h
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-L> <C-W>l
 
-" toggles from vim-unimpaired
-" map <Leader>ttb cob  " background
-" map <Leader>ttc coc  " cursorline
-" map <Leader>ttd cod  " diff
-" map <Leader>tth coh  " hlsearch
-" map <Leader>tti coi  " ignorecase
-" map <Leader>ttl col  " list
-" map <Leader>ttn con  " number
-" map <Leader>ttr cor  " relativenumber
-" map <Leader>tts cos  " spell
-" map <Leader>ttu cou  " cursorcolumn
-" map <Leader>ttv cov  " virtualedit
-" map <Leader>ttw cow  " wrap
-" map <Leader>ttx cox  " cursorline cursorcolumn
+nnoremap <silent> <Leader>bd :bdelete<CR>
+nnoremap <silent> <Leader>bn :bnext<CR>
+nnoremap <silent> <Leader>bp :bprev<CR>
 
 " gitgutter
 let g:gitgutter_signs = 0
 let g:gitgutter_map_keys = 0
-nmap [og :GitGutterSignsEnable<CR>
-nmap ]og :GitGutterSignsDisable<CR>
-nmap cog :GitGutterSignsToggle<CR>
-nmap <Leader>gn <Plug>GitGutterNextHunk
-nmap <Leader>gp <Plug>GitGutterPrevHunk
-nmap <Leader>gs <Plug>GitGutterStageHunk
-nmap <Leader>gu <Plug>GitGutterRevertHunk
-nmap <Leader>gv <Plug>GitGutterPreviewHunk
+nnoremap [og :GitGutterSignsEnable<CR>
+nnoremap ]og :GitGutterSignsDisable<CR>
+nnoremap cog :GitGutterSignsToggle<CR>
+nnoremap <Leader>gn <Plug>GitGutterNextHunk
+nnoremap <Leader>gp <Plug>GitGutterPrevHunk
+nnoremap <Leader>gs <Plug>GitGutterStageHunk
+nnoremap <Leader>gu <Plug>GitGutterRevertHunk
+nnoremap <Leader>gv <Plug>GitGutterPreviewHunk
 
 map <Leader>; gc
 nmap <Leader>;; gcc
 
-" nmap <Leader>cc :Neomake<CR>
-nmap <Leader>ce :botright cope<CR>
-nmap <Leader>cn :cn<CR>
-nmap <Leader>cp :cp<CR>
+nnoremap <Leader>ce :botright cope<CR>
+nnoremap <Leader>cc :ccl<CR>
+nnoremap <Leader>cn :cn<CR>
+nnoremap <Leader>cp :cp<CR>
 
-nmap <Leader>le :botright lope<CR>
-nmap <Leader>ln :lne<CR>
-nmap <Leader>lp :lp<CR>
+nnoremap <Leader>le :botright lope<CR>
+nnoremap <Leader>lc :lcl<CR>
+nnoremap <Leader>ln :lne<CR>
+nnoremap <Leader>lp :lp<CR>
 
 autocmd! FileType haskell
-            \ nmap <silent> <Leader>mt :GhcModType<CR> |
-            \ nmap <silent> <Leader>mT :GhcModTypeInsert<CR> |
-            \ nmap <silent> <Leader>mc :GhcModTypeClear<CR> |
-            \ nmap <silent> <Leader>ms :GhcModSplitFunCase<CR>
+            \ setlocal formatprg=hindent\ --line-length\ 80 |
+            \ nnoremap <Leader>mt :GhcModType<CR> |
+            \ nnoremap <Leader>mT :GhcModTypeInsert<CR> |
+            \ nnoremap <Leader>mc :GhcModTypeClear<CR> |
+            \ nnoremap <Leader>ms :GhcModSplitFunCase<CR> |
+            \ nnoremap <Leader>ml :GhcModLintAsync<CR>
+
+" autocmd! BufWritePost *.hs GhcModCheckAndLintAsync
+
+let g:necoghc_enable_detailed_browse = 1
 
 vnoremap <silent> * :call VisualSelection('f', '')<CR>
 vnoremap <silent> # :call VisualSelection('b', '')<CR>
 
-" fzf
-" nmap <Leader>ff :Files<CR>
-" nmap <Leader>bb :Buffers<CR>
-" nmap <Leader>sl :Lines<CR>
-" nmap <Leader>ww :Windows<CR>
-
 " unite
-nmap <Leader>ff :Unite file/async<CR>
-nmap <Leader>fr :Unite file_rec/async<CR>
+" nnoremap <Leader>ff :Unite file/async<CR>
+nnoremap <Leader>ff :Unite file_rec/async<CR>
+nnoremap <Leader>fr :Unite file_mru<CR>
 
-nmap <Leader>bb :Unite buffer<CR>
+nnoremap <Leader>bb :Unite buffer<CR>
 
-nmap <Leader>/ :Unite grep:.<CR>
+nnoremap <Leader>/ :Unite grep:.<CR>
 
 let g:unite_source_history_yank_enable = 1
-nmap <Leader>y :Unite history/yank<CR>
+nnoremap <Leader>y :Unite history/yank<CR>
 
 " sneak
 let g:sneak#streak = 1
