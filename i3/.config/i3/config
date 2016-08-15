@@ -98,7 +98,7 @@ bar {
 }
 
 client.focused #8bd649 #8bd649 #2c393f #2c393f
-client.focused_inactive #2c393f #2c393f #ffffff #2c393f
+client.focused_inactive #2c393f #2c393f #d5dbe5 #2c393f
 client.unfocused #2c393f #2c393f #d5dbe5 #2c393f
 client.urgent #37474f #ec5f67 #ffffff #ec5f67
 
