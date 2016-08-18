@@ -21,15 +21,12 @@ main =
        name <- wrapSafe T.null T.init <$> cmd "mpc" "current"
        mute <- ("off" `isInfixOf`) <$> cmd "amixer" "get" "Master"
        newVol <-
-           case vol of
-               Just v ->
-                   return . Just $
-                   (case button of
-                        "4" -> inc . read . unpack
-                        "5" -> dec . read . unpack
-                        _ -> id)
-                       v
-               Nothing -> if button == "2" then tryVol else getVol
+           case (vol, button) of
+               (Just v,"4") -> return . Just . inc . read $ unpack v
+               (Just v,"5") -> return . Just . dec . read $ unpack v
+               (Just v,_) -> return $ Just v
+               (Nothing,"2") -> tryVol
+               (Nothing,_) -> getVol
        echo $ line name newVol paused mute
 
 getVol :: Sh (Maybe Text)
