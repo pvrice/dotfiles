@@ -30,12 +30,10 @@ Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 
 call plug#end()
 
-filetype plugin indent on
-syntax on
-
 colorscheme base16-materia
 let base16colorspace=256
 set background=dark
+set termguicolors
 
 set number
 set relativenumber
