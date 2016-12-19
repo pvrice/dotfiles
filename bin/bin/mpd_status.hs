@@ -1,106 +1,100 @@
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE ExtendedDefaultRules #-}
-{-# OPTIONS_GHC -fno-warn-type-defaults #-}
 
-import Shelly
-import Data.Text as T
+import Control.Monad.IO.Class (liftIO)
+import Data.ByteString.Char8 as B (ByteString, unpack)
+import qualified Data.Map as M (lookup)
+import Data.Maybe (fromMaybe)
+import Data.Text as T (Text, unpack, pack, append)
+import Data.Text.Encoding (decodeUtf8)
+import Network.MPD
+import System.Posix.Env.ByteString (getEnv)
 
-default (T.Text)
+main :: IO ()
+main = do
+  out <- withMPD main'
+  case out of
+    (Left msg) -> print msg
+    (Right l) -> putStrLn $ T.unpack l
 
-main =
-    shelly $
-    silently $
-    do vol <- getVol
-       button <- get_env_text "BLOCK_BUTTON"
-       unless (T.null button) $
-           mapM_ (escaping False . run_ "mpc" . (: [])) $
-           mpcCommand
-               (read $ unpack button)
-               (vol >>= wrapSafe T.null (read . unpack))
-       paused <- ("paused" `isInfixOf`) <$> cmd "mpc"
-       name <- wrapSafe T.null T.init <$> cmd "mpc" "current"
-       mute <- ("off" `isInfixOf`) <$> cmd "amixer" "get" "Master"
-       newVol <-
-           case (vol, button) of
-               (Just v,"4") -> return . Just . inc . read $ unpack v
-               (Just v,"5") -> return . Just . dec . read $ unpack v
-               (Just v,_) -> return $ Just v
-               (Nothing,"2") -> tryVol
-               (Nothing,_) -> getVol
-       echo $ line name newVol paused mute
+main' :: MPD T.Text
+main' = do
+  initStatus <- status
+  button <- liftIO $ getEnv "BLOCK_BUTTON"
+  curStatus <-
+    case button of
+      (Just env) -> do
+        liftIO $ print env
+        let cmd = read $ B.unpack env
+        updated <- op cmd initStatus
+        if updated
+          then status
+          else return initStatus
+      Nothing -> return initStatus
+  song <- currentSong
+  return $ decodeUtf8 (extract song) +++ info curStatus
 
-getVol :: Sh (Maybe Text)
-getVol =
-    wrapSafe (== "n/a\n") T.init <$>
-    escaping False (cmd "mpc" "volume | tr -d volume:\\ \\%")
-
-tryVol :: Sh (Maybe Text)
-tryVol = do
-    vol <- getVol
-    case vol of
-        Just v -> return $ Just v
-        Nothing -> tryVol
-
-wrapSafe :: (t -> Bool) -> (t -> a) -> t -> Maybe a
-wrapSafe p f n =
-    if p n
-        then Nothing
-        else Just $ f n
-
-mpcCommand :: Int -> Maybe Int -> [Text]
-mpcCommand block_button volume =
-    case block_button of
-        1 -> ["toggle"]
-        2 -> ["clear", "listall | mpc add", "random on", "play"]
-        3 -> ["stop"]
-        4 -> [incdec inc]
-        5 -> [incdec dec]
-        8 -> ["prev"]
-        9 -> ["next"]
-        _ -> [""]
+op :: Int -> Status -> MPD Bool
+op cmd s =
+  case cmd of
+    1 ->
+      case stState s of
+        Playing -> pause True >> return True
+        Paused -> pause False >> return True
+        Stopped -> return () >> return False
+    2 -> clear >> add "" >> random True >> play Nothing >> return False
+    3 -> stop >> return True
+    4 -> setVolume' inc >> return True
+    5 -> setVolume' dec >> return True
+    8 -> previous >> return False
+    9 -> next >> return False
+    _ -> return () >> return False
   where
-    incdec f =
-        case volume of
-            Just v -> "volume " +++ f v
-            Nothing -> ""
+    vol = stVolume s
+    setVolume' f =
+      case vol of
+        Just v -> setVolume $ f v
+        Nothing -> return ()
 
-inc :: Int -> Text
-inc volume = pack . show $ min 100 $ (volume `div` 5 + 1) * 5
+info :: Status -> T.Text
+info s =
+  case (vol, state) of
+    (_, Stopped) -> " [stopped]"
+    (Just 100, Playing) -> ""
+    (Just v, Playing) -> " [" +++ volIndicator v +++ "%]"
+    (Just 100, Paused) -> " [paused]"
+    (Just v, Paused) -> " [paused | " +++ volIndicator v +++ "%]"
+    (Nothing, _) -> " [odd]"
+  where
+    vol = stVolume s
+    state = stState s
+    volIndicator v = symbol v +++ T.pack (show v)
+    symbol v
+      | v > 49 = "\61480"
+      | v > 0 = "\61479"
+      | otherwise = "\61478"
 
-dec :: Int -> Text
-dec volume = pack . show $ max 0 (base5 `div` 5) * 5
+extract :: Maybe Song -> B.ByteString
+extract song =
+  fromMaybe "invalid song" $
+  do tags <- sgTags <$> song
+     title <- extract' =<< M.lookup Title tags
+     artist <- extract' =<< M.lookup Artist tags
+     return $ artist `mappend` " - " `mappend` title
+  where
+    extract' :: [Value] -> Maybe B.ByteString
+    extract' [] = Nothing
+    extract' (b:_) = Just $ toUtf8 b
+
+inc :: Int -> Int
+inc volume = min 100 $ (volume `div` 5 + 1) * 5
+
+dec :: Int -> Int
+dec volume = max 0 (base5 `div` 5) * 5
   where
     base5 =
-        if volume `mod` 5 == 0
-            then volume - 1
-            else volume
-
-line :: Maybe Text -> Maybe Text -> Bool -> Bool -> Text
-line nameM volM paused mute =
-    case (nameM, volM) of
-        (Just name,Just vol) -> name +++ checkVol vol paused mute
-        _ -> "MPD stopped"
-
-checkVol :: Text -> Bool -> Bool -> Text
-checkVol vol paused mute =
-    if volInt == 100
-        then sameVol
-        else diffVol
-  where
-    sameVol =
-        if paused || mute
-            then " [paused]"
-            else ""
-    diffVol =
-        if paused || mute
-            then " [paused | " +++ volDisplay
-            else " [" +++ volDisplay
-    symbol
-      | volInt > 49 = "\61480"
-      | volInt > 0 = "\61479"
-      | otherwise = "\61478"
-    volInt = read $ unpack vol :: Int
-    volDisplay = symbol +++ " " +++ vol +++ "%]"
+      if volume `mod` 5 == 0
+        then volume - 1
+        else volume
 
 (+++) :: Text -> Text -> Text
 (+++) = append
