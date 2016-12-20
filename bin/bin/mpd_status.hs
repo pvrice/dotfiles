@@ -8,6 +8,7 @@ import Data.Text as T (Text, unpack, pack, append)
 import Data.Text.Encoding (decodeUtf8)
 import Network.MPD
 import System.Posix.Env.ByteString (getEnv)
+import Text.Read (readMaybe)
 
 main :: IO ()
 main = do
@@ -23,8 +24,7 @@ main' = do
   curStatus <-
     case button of
       (Just env) -> do
-        liftIO $ print env
-        let cmd = read $ B.unpack env
+        let cmd = readMaybe $ B.unpack env
         updated <- op cmd initStatus
         if updated
           then status
@@ -33,21 +33,22 @@ main' = do
   song <- currentSong
   return $ decodeUtf8 (extract song) +++ info curStatus
 
-op :: Int -> Status -> MPD Bool
-op cmd s =
+op :: Maybe Int -> Status -> MPD Bool
+op Nothing _ = return False
+op (Just cmd) s =
   case cmd of
     1 ->
       case stState s of
         Playing -> pause True >> return True
         Paused -> pause False >> return True
-        Stopped -> return () >> return False
+        Stopped -> play Nothing >> return True
     2 -> clear >> add "" >> random True >> play Nothing >> return False
     3 -> stop >> return True
     4 -> setVolume' inc >> return True
     5 -> setVolume' dec >> return True
     8 -> previous >> return False
     9 -> next >> return False
-    _ -> return () >> return False
+    _ -> return False
   where
     vol = stVolume s
     setVolume' f =
@@ -63,11 +64,11 @@ info s =
     (Just v, Playing) -> " [" +++ volIndicator v +++ "%]"
     (Just 100, Paused) -> " [paused]"
     (Just v, Paused) -> " [paused | " +++ volIndicator v +++ "%]"
-    (Nothing, _) -> " [odd]"
+    (Nothing, _) -> ""
   where
     vol = stVolume s
     state = stState s
-    volIndicator v = symbol v +++ T.pack (show v)
+    volIndicator v = symbol v +++ " " +++ T.pack (show v)
     symbol v
       | v > 49 = "\61480"
       | v > 0 = "\61479"
