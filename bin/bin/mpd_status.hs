@@ -20,54 +20,51 @@ main = do
 main' :: MPD T.Text
 main' = do
   initStatus <- status
+  let initState = stState initStatus
+  let initVol = stVolume initStatus
   button <- liftIO $ getEnv "BLOCK_BUTTON"
-  curStatus <-
+  (curState, curVol) <-
     case button of
       (Just env) -> do
         let cmd = readMaybe $ B.unpack env
-        updated <- op cmd initStatus
-        if updated
-          then status
-          else return initStatus
-      Nothing -> return initStatus
+        op cmd initState initVol
+      Nothing -> return (initState, initVol)
   song <- currentSong
-  return $ decodeUtf8 (extract song) +++ info curStatus
+  return $ decodeUtf8 (extract song) +++ info curState curVol
 
-op :: Maybe Int -> Status -> MPD Bool
-op Nothing _ = return False
-op (Just cmd) s =
+op :: Maybe Int -> State -> Maybe Int -> MPD (State, Maybe Int)
+op Nothing s v = return (s, v)
+op (Just cmd) state vol =
   case cmd of
     1 ->
-      case stState s of
-        Playing -> pause True >> return True
-        Paused -> pause False >> return True
-        Stopped -> play Nothing >> return True
-    2 -> clear >> add "" >> random True >> play Nothing >> return False
-    3 -> stop >> return True
-    4 -> setVolume' inc >> return True
-    5 -> setVolume' dec >> return True
-    8 -> previous >> return False
-    9 -> next >> return False
-    _ -> return False
+      case state of
+        Playing -> pause True >> return (Paused, vol)
+        Paused -> pause False >> return (Playing, vol)
+        Stopped -> play Nothing >> return (Playing, vol)
+    2 -> clear >> add "" >> random True >> play Nothing >> return (Playing, vol)
+    3 -> stop >> return (Stopped, vol)
+    4 -> setVolume' inc
+    5 -> setVolume' dec
+    8 -> previous >> return (Playing, vol)
+    9 -> next >> return (Playing, vol)
+    _ -> noChange
   where
-    vol = stVolume s
+    noChange = return (state, vol)
     setVolume' f =
       case vol of
-        Just v -> setVolume $ f v
-        Nothing -> return ()
+        Just v -> setVolume (f v) >> return (state, Just $ f v)
+        Nothing -> noChange
 
-info :: Status -> T.Text
-info s =
-  case (vol, state) of
-    (_, Stopped) -> " [stopped]"
-    (Just 100, Playing) -> ""
-    (Just v, Playing) -> " [" +++ volIndicator v +++ "%]"
-    (Just 100, Paused) -> " [paused]"
-    (Just v, Paused) -> " [paused | " +++ volIndicator v +++ "%]"
-    (Nothing, _) -> ""
+info :: State -> Maybe Int -> T.Text
+info state vol =
+  case (state, vol) of
+    (Stopped, _) -> " [stopped]"
+    (Playing, Just 100) -> ""
+    (Playing, Just v) -> " [" +++ volIndicator v +++ "%]"
+    (Paused, Just 100) -> " [paused]"
+    (Paused, Just v) -> " [paused | " +++ volIndicator v +++ "%]"
+    (_, Nothing) -> ""
   where
-    vol = stVolume s
-    state = stState s
     volIndicator v = symbol v +++ " " +++ T.pack (show v)
     symbol v
       | v > 49 = "\61480"
