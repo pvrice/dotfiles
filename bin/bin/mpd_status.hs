@@ -30,7 +30,8 @@ main' = do
         op cmd initState initVol
       Nothing -> return (initState, initVol)
   song <- currentSong
-  return $ decodeUtf8 (extract song) +++ info curState curVol
+  let statusString = info curState curVol
+  return $ maybe "mpd stopped" (decodeUtf8 (extract song) +++) statusString
 
 op :: Maybe Int -> State -> Maybe Int -> MPD (State, Maybe Int)
 op Nothing s v = return (s, v)
@@ -55,15 +56,15 @@ op (Just cmd) state vol =
         Just v -> setVolume (f v) >> return (state, Just $ f v)
         Nothing -> noChange
 
-info :: State -> Maybe Int -> T.Text
+info :: State -> Maybe Int -> Maybe T.Text
 info state vol =
   case (state, vol) of
-    (Stopped, _) -> " [stopped]"
-    (Playing, Just 100) -> ""
-    (Playing, Just v) -> " [" +++ volIndicator v +++ "%]"
-    (Paused, Just 100) -> " [paused]"
-    (Paused, Just v) -> " [paused | " +++ volIndicator v +++ "%]"
-    (_, Nothing) -> ""
+    (Stopped, _) -> Nothing
+    (Playing, Just 100) -> Just ""
+    (Playing, Just v) -> Just $ " [" +++ volIndicator v +++ "%]"
+    (Paused, Just 100) -> Just " [paused]"
+    (Paused, Just v) -> Just $ " [paused | " +++ volIndicator v +++ "%]"
+    (_, Nothing) -> Just ""
   where
     volIndicator v = symbol v +++ " " +++ T.pack (show v)
     symbol v
@@ -73,7 +74,7 @@ info state vol =
 
 extract :: Maybe Song -> B.ByteString
 extract song =
-  fromMaybe "invalid song" $
+  fromMaybe "no song" $
   do tags <- sgTags <$> song
      title <- extract' =<< M.lookup Title tags
      artist <- extract' =<< M.lookup Artist tags
