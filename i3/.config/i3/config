@@ -1,3 +1,20 @@
+set $base00 #263238
+set $base01 #2c393f
+set $base02 #37474f
+set $base03 #707880
+set $base04 #c9ccd3
+set $base05 #cdd3de
+set $base06 #d5dbe5
+set $base07 #ffffff
+set $base08 #ec5f67
+set $base09 #ea9560
+set $base0A #ffcc00
+set $base0B #8bd649
+set $base0C #80cbc4
+set $base0D #89ddff
+set $base0E #82aaff
+set $base0F #ec5f67
+
 # super key
 set $mod Mod4
 font pango:Roboto Mono, Noto Sans CJK JP, fontawesome 10
@@ -87,20 +104,23 @@ bar {
     # status_command i3status
     status_command i3blocks
     colors {
-        separator #ec5f67
-        background #2c393f
-        statusline #80cbc4
-        focused_workspace #707880 #8bd649 #37474f
-        active_workspace #707880 #ec5f67 #37474f
-        inactive_workspace #c9ccd3 #ffffff #2c393f
-        urgent_workspace #37474f #ea9560 #2c393f
+        separator $base08
+        background $base01
+        statusline $base0C
+        focused_workspace $base03 $base0B $base00
+        active_workspace $base03 $base03 $base00
+        inactive_workspace $base03 $base06 $base00
+        urgent_workspace $base03 $base08 $base00
+        binding_mode $base00 $base0A $base00
   }
 }
 
-client.focused #8bd649 #8bd649 #2c393f #2c393f
-client.focused_inactive #2c393f #2c393f #d5dbe5 #2c393f
-client.unfocused #2c393f #2c393f #d5dbe5 #2c393f
-client.urgent #37474f #ec5f67 #ffffff #ec5f67
+client.focused $base0B $base0B $base00 $base0B $base0B
+client.focused_inactive $base01 $base01 $base05 $base03 $base01
+client.unfocused $base01 $base01 $base05 $base01 $base01
+client.urgent $base08 $base08 $base00 $base08 $base08
+client.placeholder $base00 $base00 $base05 $base00 $base00
+client.background $base07
 
 # custom shortcuts
 bindcode 172 exec mpc toggle && pkill -RTMIN+11 i3blocks
