@@ -32,7 +32,6 @@ set splitright
 set cursorline
 set report=0
 
-" set autochdir
 set confirm
 set undofile
 
@@ -74,8 +73,8 @@ nnoremap <Leader>t :NERDTreeToggle<CR>
 
 nnoremap <silent> <Leader>c :nohlsearch<CR>
 
-nnoremap <silent> <Leader>- :split<CR>
-nnoremap <silent> <Leader>/ :vsplit<CR>
+nnoremap <Leader>- <C-W>S
+nnoremap <Leader>/ <C-W>v
 
 nnoremap <Leader>h <C-W>h
 nnoremap <Leader>j <C-W>j
