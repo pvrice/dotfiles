@@ -132,6 +132,10 @@ bindcode 122 exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
 bindcode 123 exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks && pkill -RTMIN+11 i3blocks
 bindcode 107 exec scrot ~/Pictures/screenshots/%Y-%m-%d-%T-screenshot.png
 
+
+bindcode 232 exec light -U 5
+bindcode 233 exec light -U 5
+
 workspace_auto_back_and_forth yes
 bindsym $mod+z workspace back_and_forth
 bindsym $mod+Shift+z move container to workspace back_and_forth
