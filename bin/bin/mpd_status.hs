@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 import Control.Monad.IO.Class (liftIO)
-import Data.ByteString.Char8 as B (ByteString, unpack)
+import Data.ByteString.Char8 as B (ByteString, unpack, pack)
 import qualified Data.Map as M (lookup)
 import Data.Maybe (fromMaybe)
 import Data.Text as T (Text, unpack, pack, append)
@@ -76,9 +76,12 @@ extract :: Maybe Song -> B.ByteString
 extract song =
   fromMaybe "no song" $
   do tags <- sgTags <$> song
-     title <- extract' =<< M.lookup Title tags
-     artist <- extract' =<< M.lookup Artist tags
-     return $ artist `mappend` " - " `mappend` title
+     if null tags
+       then fmap (B.pack . toString . sgFilePath) song
+       else do
+         title <- extract' =<< M.lookup Title tags
+         artist <- extract' =<< M.lookup Artist tags
+         return $ artist `mappend` " - " `mappend` title
   where
     extract' :: [Value] -> Maybe B.ByteString
     extract' [] = Nothing
