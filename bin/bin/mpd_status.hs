@@ -1,23 +1,25 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 import Control.Monad.IO.Class (liftIO)
-import Data.ByteString.Char8 as B (ByteString, unpack, pack)
 import qualified Data.Map as M (lookup)
 import Data.Maybe (fromMaybe)
-import Data.Text as T (Text, unpack, pack, append)
-import Data.Text.Encoding (decodeUtf8)
-import Network.MPD
 import System.Posix.Env.ByteString (getEnv)
-import Text.Read (readMaybe)
+
+import Data.Binary (encode)
+import qualified Data.ByteString as B (ByteString, putStr, pack)
+import Data.ByteString.Char8 (readInt)
+import Data.ByteString.Lazy (toStrict)
+import Network.MPD
+import qualified Text.Show.ByteString as B (show)
 
 main :: IO ()
 main = do
   out <- withMPD main'
   case out of
     (Left msg) -> print msg
-    (Right l) -> putStrLn $ T.unpack l
+    (Right l) -> B.putStr l
 
-main' :: MPD T.Text
+main' :: MPD B.ByteString
 main' = do
   initStatus <- status
   let initState = stState initStatus
@@ -26,12 +28,12 @@ main' = do
   (curState, curVol) <-
     case button of
       (Just env) -> do
-        let cmd = readMaybe $ B.unpack env
-        op cmd initState initVol
+        let cmd = readInt env
+        op (fmap fst cmd) initState initVol
       Nothing -> return (initState, initVol)
   song <- currentSong
   let statusString = info curState curVol
-  return $ maybe "mpd stopped" (decodeUtf8 (extract song) +++) statusString
+  return $ maybe "mpd stopped" (extract song +++) statusString
 
 op :: Maybe Int -> State -> Maybe Int -> MPD (State, Maybe Int)
 op Nothing s v = return (s, v)
@@ -56,7 +58,7 @@ op (Just cmd) state vol =
         Just v -> setVolume (f v) >> return (state, Just $ f v)
         Nothing -> noChange
 
-info :: State -> Maybe Int -> Maybe T.Text
+info :: State -> Maybe Int -> Maybe B.ByteString
 info state vol =
   case (state, vol) of
     (Stopped, _) -> Nothing
@@ -66,22 +68,23 @@ info state vol =
     (Paused, Just v) -> Just $ " [paused | " +++ volIndicator v +++ "%]"
     (_, Nothing) -> Just ""
   where
-    volIndicator v = symbol v +++ " " +++ T.pack (show v)
+    volIndicator v = symbol v +++ " " +++ toStrict (B.show v)
+    -- There's probably a more convenient way to represent UTF-8 literals...
     symbol v
-      | v > 49 = "\61480"
-      | v > 0 = "\61479"
-      | otherwise = "\61478"
+      | v > 49 = B.pack [0xef, 0x80, 0xa8]
+      | v > 0 = B.pack [0xef, 0x80, 0xa7]
+      | otherwise = B.pack [0xef, 0x80, 0xa6]
 
 extract :: Maybe Song -> B.ByteString
 extract song =
   fromMaybe "no song" $
   do tags <- sgTags <$> song
      if null tags
-       then fmap (B.pack . toString . sgFilePath) song
+       then fmap (toStrict . encode . toString . sgFilePath) song
        else do
          title <- extract' =<< M.lookup Title tags
          artist <- extract' =<< M.lookup Artist tags
-         return $ artist `mappend` " - " `mappend` title
+         return $ artist +++ " - " +++ title
   where
     extract' :: [Value] -> Maybe B.ByteString
     extract' [] = Nothing
@@ -98,5 +101,7 @@ dec volume = max 0 (base5 `div` 5) * 5
         then volume - 1
         else volume
 
-(+++) :: Text -> Text -> Text
-(+++) = append
+(+++)
+  :: (Monoid m)
+  => m -> m -> m
+(+++) = mappend
