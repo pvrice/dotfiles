@@ -19,7 +19,7 @@ set $base0F #ec5f67
 set $mod Mod4
 font pango:Roboto Mono, Noto Sans CJK JP, fontawesome 10
 floating_modifier $mod
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec termite -e 'env SHELL=/usr/bin/fish fish'
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec j4-dmenu-desktop --dmenu="dmenu -fn 'robotomono-11' -i"
 
@@ -109,7 +109,7 @@ bar {
         statusline $base0C
         focused_workspace $base03 $base0B $base00
         active_workspace $base03 $base03 $base00
-        inactive_workspace $base03 $base06 $base00
+        inactive_workspace $base03 $base07 $base00
         urgent_workspace $base03 $base08 $base00
         binding_mode $base00 $base0A $base00
   }
@@ -131,7 +131,6 @@ bindcode 121 exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blo
 bindcode 122 exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks && pkill -RTMIN+11 i3blocks
 bindcode 123 exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks && pkill -RTMIN+11 i3blocks
 bindcode 107 exec scrot ~/Pictures/screenshots/%Y-%m-%d-%T-screenshot.png
-
 
 bindcode 232 exec light -U 5
 bindcode 233 exec light -U 5
