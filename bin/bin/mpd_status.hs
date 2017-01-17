@@ -3,6 +3,7 @@
 import Control.Monad.IO.Class (liftIO)
 import qualified Data.Map as M (lookup)
 import Data.Maybe (fromMaybe)
+import Data.Monoid ((<>))
 import System.Posix.Env.ByteString (getEnv)
 
 import Data.Binary (encode)
@@ -33,7 +34,7 @@ main' = do
       Nothing -> return (initState, initVol)
   song <- currentSong
   let statusString = info curState curVol
-  return $ maybe "mpd stopped" (extract song +++) statusString
+  return $ maybe "mpd stopped" (extract song <>) statusString
 
 op :: Maybe Int -> State -> Maybe Int -> MPD (State, Maybe Int)
 op Nothing s v = return (s, v)
@@ -63,12 +64,12 @@ info state vol =
   case (state, vol) of
     (Stopped, _) -> Nothing
     (Playing, Just 100) -> Just ""
-    (Playing, Just v) -> Just $ " [" +++ volIndicator v +++ "%]"
+    (Playing, Just v) -> Just $ " [" <> volIndicator v <> "%]"
     (Paused, Just 100) -> Just " [paused]"
-    (Paused, Just v) -> Just $ " [paused | " +++ volIndicator v +++ "%]"
+    (Paused, Just v) -> Just $ " [paused | " <> volIndicator v <> "%]"
     (_, Nothing) -> Just ""
   where
-    volIndicator v = symbol v +++ " " +++ toStrict (B.show v)
+    volIndicator v = symbol v <> " " <> toStrict (B.show v)
     -- There's probably a more convenient way to represent UTF-8 literals...
     symbol v
       | v > 49 = B.pack [0xef, 0x80, 0xa8]
@@ -84,7 +85,7 @@ extract song =
        else do
          title <- extract' =<< M.lookup Title tags
          artist <- extract' =<< M.lookup Artist tags
-         return $ artist +++ " - " +++ title
+         return $ artist <> " - " <> title
   where
     extract' :: [Value] -> Maybe B.ByteString
     extract' [] = Nothing
@@ -100,8 +101,3 @@ dec volume = max 0 (base5 `div` 5) * 5
       if volume `mod` 5 == 0
         then volume - 1
         else volume
-
-(+++)
-  :: (Monoid m)
-  => m -> m -> m
-(+++) = mappend
