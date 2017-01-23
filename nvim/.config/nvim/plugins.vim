@@ -44,8 +44,8 @@ nnoremap <Leader><Leader> :Unite grep:.<CR>
 " airline
 let g:airline#extensions#hunks#non_zero_only = 1
 
-let g:airline_left_sep = ' '
-let g:airline_right_sep = ' '
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
