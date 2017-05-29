@@ -5,22 +5,35 @@ if dein#load_state('~/.local/share/dein')
 
     call dein#add('~/.local/share/dein/repos/github.com/Shougo/dein.vim')
 
-    call dein#add('AndrewRadev/sideways.vim')
-    call dein#add('benekastah/neomake')
-    " call dein#add('morhetz/gruvbox')
-    call dein#add('scrooloose/nerdtree', { 'on_cmd': 'NERDTreeToggle' })
     call dein#add('Shougo/deoplete.nvim')
+
+    " always active, mostly don't require interaction
+    call dein#add('morhetz/gruvbox')
+    call dein#add('vim-airline/vim-airline')
+    " a -- text object
+    call dein#add('vim-scripts/argtextobj.vim')
+    " <C-k> in completion menu -- expand snippet
     call dein#add('Shougo/neosnippet.vim', { 'depends': 'neosnippet-snippets' })
     call dein#add('Shougo/neosnippet-snippets')
-    call dein#add('tommcdo/vim-exchange')
-    call dein#add('tpope/vim-commentary')
-    call dein#add('tpope/vim-fugitive')
     call dein#add('tpope/vim-repeat')
     call dein#add('tpope/vim-sleuth')
+
+    " mostly need to be explicitly invoked
+    " :Neomake, etc
+    call dein#add('benekastah/neomake')
+    " :NERDTreeToggle, etc
+    call dein#add('scrooloose/nerdtree', { 'on_cmd': 'NERDTreeToggle' })
+    " cx, v_X -- exchange, cxc -- clear
+    call dein#add('tommcdo/vim-exchange')
+    " gc, :Commentary -- comment
+    call dein#add('tpope/vim-commentary')
+    " :Gstatus, etc, etc
+    call dein#add('tpope/vim-fugitive')
+    " I've got this memorized
     call dein#add('tpope/vim-surround')
     call dein#add('tpope/vim-unimpaired')
-    call dein#add('vim-airline/vim-airline')
 
+    " haskell
     call dein#add('eagletmt/neco-ghc', { 'for': 'haskell' })
     call dein#add('neovimhaskell/haskell-vim', { 'for': 'haskell' })
     " call dein#add('alx741/vim-hindent', { 'for': 'haskell' })
@@ -73,23 +86,23 @@ nnoremap <Leader><Leader> :Unite grep:.<CR>
 " nnoremap <Leader>y :Unite history/yank<CR>
 
 " airline
-let g:airline#extensions#hunks#non_zero_only = 1
+let g:airline_powerline_fonts = 1
 
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_symbols.maxlinenr = ''
+
+" vim-surround
+imap <C-A> <C-S><C-S>B
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#max_menu_width = 60
 
 " neomake
 autocmd! BufWritePost,BufReadPost *.{c,h,hs} Neomake
 autocmd! VimLeave * let g:neomake_verbose = 0
-
-" sideways
-omap aa <Plug>SidwaysArgumentTextobjA
-xmap aa <Plug>SidwaysArgumentTextobjA
-omap ia <Plug>SidwaysArgumentTextobjI
-xmap ia <Plug>SidwaysArgumentTextobjI
 
 " necoghc
 let g:haskellmode_completion_ghc = 0

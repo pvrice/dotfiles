@@ -4,8 +4,12 @@ set t_8f=[38;2;%lu;%lu;%lum
 set t_8b=[48;2;%lu;%lu;%lum
 colorscheme gruvbox
 set background=dark
-highlight Normal ctermbg=NONE guibg=NONE
-highlight NonText ctermbg=NONE guibg=NONE
+
+if !has("gui_running")
+    highlight Normal ctermbg=NONE guibg=NONE
+    highlight NonText ctermbg=NONE guibg=NONE
+endif
+
 set termguicolors
 set lazyredraw
 
@@ -18,6 +22,7 @@ set shiftwidth=2
 set shiftround
 set smartindent
 set textwidth=80
+set list
 
 set hidden
 
@@ -84,6 +89,3 @@ nnoremap <silent> <Leader>bp :bprev<CR>
 
 map <Leader>; gc
 nmap <Leader>;; gcc
-
-" depends on vim-surround
-imap <C-A> <C-G>S{
