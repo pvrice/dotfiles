@@ -7,7 +7,7 @@ allow_bold = true
 dynamic_title = true
 urgent_on_bell = true
 clickable_url = true
-font = Monospace 10
+font = Monospace 11
 scrollback_lines = 10000
 search_wrap = true
 #icon_name = terminal
@@ -32,54 +32,44 @@ filter_unmatched_urls = true
 #modify_other_keys = false
 
 [colors]
-color0 =     #263238
-background = #263238
+# hard contrast: background = #1d2021
+# background = #282828
+background = rgba(40, 40, 40, 0.95)
+# soft contrast: background = #32302f
+foreground = #ebdbb2
+foreground_bold = #ebdbb2
 
-color18 = #2c393f
+# dark0 + gray
+color0 = #282828
+color8 = #928374
 
-color19 = #37474f
+# neutral_red + bright_red
+color1 = #cc241d
+color9 = #fb4934
 
-color8 = #707880
+# neutral_green + bright_green
+color2 = #98971a
+color10 = #b8bb26
 
-color20 = #c9ccd3
+# neutral_yellow + bright_yellow
+color3 = #d79921
+color11 = #fabd2f
 
-foreground = #cdd3de
-color7 =     #cdd3de
+# neutral_blue + bright_blue
+color4 = #458588
+color12 = #83a598
 
-foreground_bold = #d5dbe5
-cursor =          #d5dbe5
-color21 =         #d5dbe5
+# neutral_purple + bright_purple
+color5 = #b16286
+color13 = #d3869b
 
-color15 = #ffffff
+# neutral_aqua + faded_aqua
+color6 = #689d6a
+color14 = #8ec07c
 
-color1 = #ec5f67
-color9 = #ec5f67
-
-color16 = #ea9560
-
-color3 =  #ffcc00
-color11 = #ffcc00
-
-color2 =  #8bd649
-color10 = #8bd649
-
-color6 =  #80cbc4
-color14 = #80cbc4
-
-color4 =  #89ddff
-color12 = #89ddff
-
-color5 =  #82aaff
-color13 = #82aaff
-
-color17 = #ec5f67
-
-# 20% background transparency (requires a compositor)
-# background = rgba(63, 63, 63, 0.8)
-
-# if unset, will reverse foreground and background
-# huh???
-# highlight = #2f2f2f
+# light4 + light1
+color7 = #a89984
+color15 = #ebdbb2
 
 [hints]
 #font = Monospace 12
