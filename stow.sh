@@ -1,4 +1,4 @@
 #!/bin/sh
 for dir in */
-do stow $dir
+do stow --no-folding $dir
 done
