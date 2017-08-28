@@ -28,6 +28,9 @@ repo = "cespare/vim-toml"
 repo = "neovimhaskell/haskell-vim"
 
 [[plugins]]
+repo = 'dag/vim-fish'
+
+[[plugins]]
 repo = "tpope/vim-repeat"
 
 [[plugins]]
