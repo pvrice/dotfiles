@@ -1,10 +1,31 @@
-source ~/.config/nvim/plugins.vim
+let mapleader=","
 
-set t_8f=[38;2;%lu;%lu;%lum
-set t_8b=[48;2;%lu;%lu;%lum
-colorscheme gruvbox
+set runtimepath+=~/.local/share/dein/repos/github.com/Shougo/dein.vim
+
+if dein#load_state('~/.local/share/dein')
+    call dein#begin('~/.local/share/dein')
+
+    call dein#add('~/.local/share/dein/repos/github.com/Shougo/dein.vim')
+    call dein#load_toml("~/.config/nvim/plugins.toml", {})
+
+    call dein#end()
+    call dein#save_state()
+endif
+
+if dein#check_install()
+    call dein#install()
+endif
+
+filetype plugin indent on
+syntax enable
+
 set background=dark
 
+" tmux, not sure if this is still necessary
+set t_8f=[38;2;%lu;%lu;%lum
+set t_8b=[48;2;%lu;%lu;%lum
+
+" transparency
 if !has("gui_running")
     highlight Normal ctermbg=NONE guibg=NONE
     highlight NonText ctermbg=NONE guibg=NONE
@@ -33,8 +54,7 @@ set shell=/usr/bin/fish
 
 set splitbelow
 set splitright
-
-set cursorline
+set equalalways
 
 set confirm
 set undofile
@@ -53,15 +73,28 @@ nnoremap Y y$
 
 nnoremap Q <nop>
 
-nnoremap q: :q
-
 cnoremap <C-A> <Home>
 cnoremap <C-E> <End>
 
 vnoremap < <gv
 vnoremap > >gv
 
-let mapleader=","
+nnoremap <silent> <Leader>c :nohlsearch<CR>
+
+nnoremap <Leader>bd :bdelete<CR>
+nnoremap <Leader>bn :bnext<CR>
+nnoremap <Leader>bp :bprev<CR>
+
+" window management
+nnoremap <A--> <C-W>S
+nnoremap <silent> <A-_> :botright split<CR>
+nnoremap <A-bar> <C-W>v
+nnoremap <silent> <A-\> :vertical botright split<CR>
+
+nnoremap <A-h> <C-W>h
+nnoremap <A-j> <C-W>j
+nnoremap <A-k> <C-W>k
+nnoremap <A-l> <C-W>l
 
 " resume position
 augroup LastPosition
@@ -70,22 +103,3 @@ augroup LastPosition
                 \   exe "normal! g`\"" |
                 \ endif
 augroup END
-
-nnoremap <Leader>t :NERDTreeToggle<CR>
-
-nnoremap <silent> <Leader>c :nohlsearch<CR>
-
-nnoremap <Leader>- <C-W>S
-nnoremap <Leader>/ <C-W>v
-
-nnoremap <Leader>h <C-W>h
-nnoremap <Leader>j <C-W>j
-nnoremap <Leader>k <C-W>k
-nnoremap <Leader>l <C-W>l
-
-nnoremap <silent> <Leader>bd :bdelete<CR>
-nnoremap <silent> <Leader>bn :bnext<CR>
-nnoremap <silent> <Leader>bp :bprev<CR>
-
-map <Leader>; gc
-nmap <Leader>;; gcc
