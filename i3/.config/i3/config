@@ -48,7 +48,8 @@ font pango:Monospace 11
 floating_modifier $mod
 bindsym $mod+Return exec termite -e 'env SHELL=/usr/bin/fish fish'
 bindsym $mod+Shift+q kill
-bindsym $mod+d exec j4-dmenu-desktop --dmenu='dmenu -fn "monospace-11" -nb "$darkcyan" -nf "$black" -sf "$black" -sb "$cyan" -i'
+# bindsym $mod+d exec j4-dmenu-desktop --dmenu='dmenu -fn "monospace-11" -nb "$darkcyan" -nf "$black" -sf "$black" -sb "$cyan" -i'
+bindsym $mod+d exec "rofi -combi-modi window,drun -show combi -modi combi"
 
 bindsym $mod+h focus left
 bindsym $mod+j focus down
