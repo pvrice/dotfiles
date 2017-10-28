@@ -75,19 +75,8 @@ hook_post_source = """
 repo = "scrooloose/nerdtree"
 on_cmd = "NERDTreeToggle"
 hook_add = """
-  nnoremap <silent> <Leader>t :NERDTreeToggle<CR>
+  nnoremap <Leader>t :NERDTreeToggle<CR>
 """
-
-[[plugins]]
-repo = "majutsushi/tagbar"
-on_cmd = "TagbarToggle"
-hook_add = """
-  nnoremap <silent> <Leader>T :TagbarToggle<CR>
-"""
-
-[[plugins]]
-repo = "ludovicchabant/vim-gutentags"
-on_source = "tagbar"
 
 # cx, v_X -- exchange, cxc -- clear
 [[plugins]]
