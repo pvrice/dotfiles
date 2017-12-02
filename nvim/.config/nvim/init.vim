@@ -63,7 +63,7 @@ set ignorecase
 set smartcase
 
 set wildignore=*.o,*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
-set wildmode=longest,list
+set wildmode=list:longest
 set wildignorecase
 
 noremap j gj

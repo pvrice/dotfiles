@@ -64,7 +64,7 @@ hook_add = """
 repo = "Shougo/neosnippet-snippets"
 
 [[plugins]]
-repo = "benekastah/neomake"
+repo = "neomake/neomake"
 on_ft = [ "c", "h", "hs" ]
 hook_post_source = """
   autocmd! BufWritePost,BufReadPost * Neomake
