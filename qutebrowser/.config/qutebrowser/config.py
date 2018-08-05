@@ -14,6 +14,8 @@ c.confirm_quit = ['downloads']
 c.new_instance_open_target = 'tab-silent'
 c.new_instance_open_target_window = 'last-focused'
 
+c.editor.command = ['termite', '-e', 'bash -c \'exec nvim -f {file} -c "normal {line}G{column0}l"\'']
+
 c.qt.force_platform = 'xcb'
 
 c.auto_save.session = True
@@ -37,6 +39,7 @@ c.tabs.mode_on_change = 'restore'
 c.tabs.show = 'multiple'
 c.tabs.indicator.width = 0
 
+c.url.open_base_url = True
 c.url.searchengines = {
         'DEFAULT': 'https://www.ecosia.org/search?q={}',
         'ap': 'https://archlinux.org/packages/?q={}',
@@ -54,8 +57,8 @@ c.url.searchengines = {
 
 c.fonts.monospace = '"Sarasa Term J", monospace'
 
-mono = '14pt monospace'
-small_mono = '13pt monospace'
+mono = '13pt monospace'
+small_mono = '12pt monospace'
 c.fonts.completion.entry = mono
 c.fonts.completion.category = 'bold ' + mono
 c.fonts.debug_console = mono
@@ -73,5 +76,5 @@ config.bind(',X', 'spawn -dv mpv --profile=no-term {url}')
 config.bind(',p', 'open -b -- {clipboard}')
 config.bind(',x', 'hint all spawn -dv mpv --profile=no-term {hint-url}')
 
-for f in glob.glob(str(config.configdir / 'conf.d/*.py')):
+for f in glob.glob(str(config.configdir / 'conf.d' / '*.py')):
     config.source(str(os.path.relpath(f, start=config.configdir)))
