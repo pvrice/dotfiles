@@ -1,0 +1,4 @@
+#!/usr/bin/env fish
+
+set pass (pass show fastmail/mail)
+and echo "set imap_pass = $pass"
