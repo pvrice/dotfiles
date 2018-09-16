@@ -7,9 +7,8 @@ for protocol in (
     config.set('content.javascript.enabled', True, protocol + '://*')
 
 try:
-    f = open(config.configdir / 'conf.d' / 'domains', 'r')
+    with open(config.configdir / 'conf.d' / 'domains', 'r') as f:
+        for domain in f.read().splitlines():
+            config.set('content.javascript.enabled', True, '*://' + domain + '/*')
 except FileNotFoundError:
     config.set('content.javascript.enabled', True)
-else:
-    for domain in f.read().splitlines():
-        config.set('content.javascript.enabled', True, '*://' + domain + '/*')
