@@ -4,7 +4,8 @@ function allowjs
         return 1
     end
 
-    set -l domains $XDG_CONFIG_HOME/qutebrowser/conf.d/domains
+    set config_home (test -z $XDG_CONFIG_HOME; and echo ~/.config)
+    set -l domains $config_home/qutebrowser/conf.d/domains
 
     if not test -e $domains
         echo "$domains does not exist"
@@ -18,7 +19,7 @@ function allowjs
         return 1
     end
 
-    cat $domains (string split ' ' $argv | psub) | sort -u -o $domains
+    cat $domains (string split ' ' $argv | sed -e 's|^|*://|' -e 's|$|/*|' | psub) | sort -u -o $domains
     or begin
         echo 'failed to modify the whitelist'
         cp $backup $domains
