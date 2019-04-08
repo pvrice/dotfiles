@@ -1,4 +1,5 @@
-let mapleader=","
+let mapleader=" "
+nnoremap <space> <nop>
 
 set runtimepath+=~/.local/share/dein/repos/github.com/Shougo/dein.vim
 
@@ -43,6 +44,7 @@ set shiftwidth=2
 set shiftround
 set smartindent
 set textwidth=80
+set fo+=l
 set list
 
 set hidden
@@ -63,8 +65,12 @@ set ignorecase
 set smartcase
 
 set wildignore=*.o,*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
-set wildmode=list:longest
+set wildmode=longest,full
 set wildignorecase
+
+set inccommand=nosplit
+
+set shortmess+=c
 
 noremap j gj
 noremap k gk
@@ -103,3 +109,5 @@ augroup LastPosition
                 \   exe "normal! g`\"" |
                 \ endif
 augroup END
+
+autocmd FileType mail setl tw=72
