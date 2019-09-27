@@ -6,7 +6,7 @@ alias neomutt 'neomutt -e "source mutt_pass|"'
 
 if which exa > /dev/null 2>&1
     alias ls 'exa'
-    alias la 'exa -laF'
-    alias ll 'exa -lF'
+    alias la 'exa -la'
+    alias ll 'exa -l'
     alias tree 'exa -T'
 end
