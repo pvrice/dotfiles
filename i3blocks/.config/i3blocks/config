@@ -4,7 +4,6 @@ markup=none
 [mpd]
 command=~/.cabal/bin/mpd-status
 interval=persist
-#format=json
 markup=pango
 
 [volume]
@@ -14,23 +13,23 @@ signal=10
 
 [memory]
 command=$SCRIPT_DIR/memory/memory
-label=   
+label= 
 interval=30
 
 [temperature]
 command=$SCRIPT_DIR/temperature/temperature
-label=   
+label= 
 interval=60
 
 [disk]
 command=$SCRIPT_DIR/disk/disk
-label=   
+label= 
 instance=/media/storage
 interval=30
 
 [disk]
 command=$SCRIPT_DIR/disk/disk
-label=   
+label= 
 instance=/
 interval=30
 
