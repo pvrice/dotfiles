@@ -55,12 +55,13 @@ c.colors.completion.match.fg = bright_red
 c.colors.completion.category.bg = 'qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 ' + gray + ', stop:1 ' + dark2 + ')'
 c.colors.completion.category.fg = light1
 c.colors.completion.category.border.top = dark1
-c.colors.completion.category.border.bottom = dark1
+c.colors.completion.category.border.bottom = dark0
 
 c.colors.completion.item.selected.bg = bright_yellow
 c.colors.completion.item.selected.fg = dark0
 c.colors.completion.item.selected.border.top = neutral_yellow
 c.colors.completion.item.selected.border.bottom = neutral_yellow
+c.colors.completion.item.selected.match.fg = faded_red
 
 c.colors.completion.scrollbar.bg = dark1
 c.colors.completion.scrollbar.fg = light1
@@ -105,6 +106,9 @@ c.colors.prompts.fg = light1
 c.colors.statusbar.normal.bg = dark0
 c.colors.statusbar.normal.fg = light1
 
+c.colors.statusbar.private.bg = dark1
+c.colors.statusbar.private.fg = light1
+
 c.colors.statusbar.progress.bg = light1
 
 c.colors.statusbar.caret.bg = faded_purple
@@ -124,13 +128,10 @@ c.colors.statusbar.insert.fg = light1
 c.colors.statusbar.passthrough.bg = faded_blue
 c.colors.statusbar.passthrough.fg = light1
 
-c.colors.statusbar.private.bg = dark1
-c.colors.statusbar.private.fg = light1
-
 c.colors.statusbar.url.fg = light1
-c.colors.statusbar.url.success.http.fg = light1
+c.colors.statusbar.url.success.http.fg = c.colors.statusbar.url.fg
 c.colors.statusbar.url.success.https.fg = bright_green
-c.colors.statusbar.url.hover.fg = bright_aqua
+c.colors.statusbar.url.hover.fg = bright_blue
 c.colors.statusbar.url.warn.fg = neutral_yellow
 c.colors.statusbar.url.error.fg = bright_orange
 
@@ -139,12 +140,23 @@ c.colors.tabs.indicator.error = bright_red
 c.colors.tabs.indicator.start = neutral_blue
 c.colors.tabs.indicator.stop = neutral_green
 c.colors.tabs.indicator.system = 'rgb'
+
 c.colors.tabs.even.bg = dark0
-c.colors.tabs.odd.bg = dark0
 c.colors.tabs.even.fg = light1
+c.colors.tabs.odd.bg = dark0
 c.colors.tabs.odd.fg = light1
 c.colors.tabs.selected.even.bg = dark2
-c.colors.tabs.selected.odd.bg = dark2
 c.colors.tabs.selected.even.fg = light1
+c.colors.tabs.selected.odd.bg = dark2
 c.colors.tabs.selected.odd.fg = light1
+
+c.colors.tabs.pinned.even.bg = dark1
+c.colors.tabs.pinned.even.fg = light1
+c.colors.tabs.pinned.odd.bg = dark1
+c.colors.tabs.pinned.odd.fg = light1
+c.colors.tabs.pinned.selected.even.bg = c.colors.tabs.selected.even.bg
+c.colors.tabs.pinned.selected.even.fg = c.colors.tabs.selected.even.fg
+c.colors.tabs.pinned.selected.odd.bg = c.colors.tabs.selected.odd.bg
+c.colors.tabs.pinned.selected.odd.fg = c.colors.tabs.selected.odd.fg
+
 c.colors.webpage.bg = ''
