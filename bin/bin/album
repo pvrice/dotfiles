@@ -1,0 +1,2 @@
+#!/usr/bin/fish
+set -l a (mpc list album | fzf) && mpc -q clear && mpc -q random off && mpc findadd album $a && mpc play
