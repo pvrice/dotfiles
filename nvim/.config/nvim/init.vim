@@ -44,6 +44,7 @@ set shiftwidth=2
 set shiftround
 set smartindent
 set textwidth=80
+set colorcolumn=+1
 set fo+=l
 set list
 
