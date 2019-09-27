@@ -112,3 +112,4 @@ augroup LastPosition
 augroup END
 
 autocmd FileType mail setl tw=72
+autocmd FileType netrc setl noundofile noswapfile
