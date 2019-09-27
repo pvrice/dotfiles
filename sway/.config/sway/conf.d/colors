@@ -1,13 +1,20 @@
 # vim:ft=conf
 set $black        #282828
+set $dark1        #3c3836
+set $dark2        #504945
+set $dark3        #665c54
+set $dark4        #7c6f64
+
 set $darkred      #cc241d
 set $darkgreen    #98971a
 set $darkyellow   #d79921
 set $darkblue     #458588
 set $darkmagenta  #b16286
 set $darkcyan     #689d6a
+
 set $lightgray    #a89984
 set $darkgray     #928374
+
 set $red          #fb4934
 set $green        #b8bb26
 set $yellow       #fabd2f
