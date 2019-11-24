@@ -31,7 +31,7 @@ c.editor.command = ['termite', '-e', 'bash -c \'exec nvim -f {file} -c "normal {
 c.auto_save.session = True
 
 c.content.host_blocking.lists = ['https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts']
-c.content.javascript.enabled = False
+c.content.javascript.enabled = True
 c.content.autoplay = False
 c.content.pdfjs = True
 c.content.netrc_file = '~/.netrc'
