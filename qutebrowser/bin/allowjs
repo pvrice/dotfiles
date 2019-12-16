@@ -4,7 +4,7 @@ argparse -N 1 -X 1 'd/domain=' -- $argv
 if set -q _flag_domain
     set domains $_flag_domain
 else
-    set config_home (test -z $XDG_CONFIG_HOME; and echo ~/.config)
+    set config_home (set -q XDG_CONFIG_HOME; and echo $XDG_CONFIG_HOME; or echo $HOME/.config)
     set domains $config_home/qutebrowser/conf.d/domains
 end
 
