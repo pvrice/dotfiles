@@ -89,7 +89,7 @@ c.fonts.tabs = mono
 config.bind(',P', 'open -b -- {primary}')
 config.bind(',X', 'spawn -dv mpv --profile=no-term {url}')
 config.bind(',p', 'open -b -- {clipboard}')
-config.bind(',x', 'hint all spawn -dv mpv --profile=no-term {hint-url}')
+config.bind(',x', 'hint links spawn -dv mpv --profile=no-term {hint-url}')
 config.bind(',d', 'hint all delete')
 
 for f in glob.glob(str(config.configdir / 'conf.d' / '*.py')):
