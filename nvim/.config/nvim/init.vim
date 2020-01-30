@@ -76,6 +76,12 @@ set shortmess+=c
 noremap j gj
 noremap k gk
 
+inoremap <C-b> <C-o>h
+inoremap <C-f> <C-o>l
+inoremap <A-b> <C-o>ge
+inoremap <A-f> <C-o>w
+inoremap <A-d> <C-o>dw
+
 nnoremap Y y$
 
 nnoremap Q <nop>
