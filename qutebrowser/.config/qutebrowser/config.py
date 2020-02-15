@@ -71,20 +71,21 @@ c.url.searchengines = {
         'y': 'https://youtube.com/results?search_query={}'
         }
 
-c.fonts.monospace = '"Sarasa Term J", monospace'
+c.fonts.default_family = ['Sarasa Term J', 'monospace']
+c.fonts.default_size = '13pt'
 
-mono = '13pt monospace'
-c.fonts.completion.entry = mono
-c.fonts.completion.category = 'bold ' + mono
-c.fonts.debug_console = mono
-c.fonts.downloads = mono
-c.fonts.hints = 'bold 12pt monospace'
-c.fonts.keyhint = mono
-c.fonts.messages.error = mono
-c.fonts.messages.info = mono
-c.fonts.messages.warning = mono
-c.fonts.statusbar = mono
-c.fonts.tabs = mono
+# c.fonts.completion.entry = mono
+c.fonts.completion.category = 'bold default_size default_family'
+# c.fonts.debug_console = mono
+# c.fonts.downloads = mono
+c.fonts.hints = 'bold 12pt default_family'
+c.fonts.prompts = '12pt sans_serif'
+# c.fonts.keyhint = mono
+# c.fonts.messages.error = mono
+# c.fonts.messages.info = mono
+# c.fonts.messages.warning = mono
+# c.fonts.statusbar = mono
+# c.fonts.tabs = mono
 
 config.bind(',P', 'open -b -- {primary}')
 config.bind(',X', 'spawn -dv mpv --profile=no-term {url}')

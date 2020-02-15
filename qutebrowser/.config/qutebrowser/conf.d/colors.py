@@ -160,3 +160,4 @@ c.colors.tabs.pinned.selected.odd.bg = c.colors.tabs.selected.odd.bg
 c.colors.tabs.pinned.selected.odd.fg = c.colors.tabs.selected.odd.fg
 
 c.colors.webpage.bg = ''
+c.colors.webpage.prefers_color_scheme_dark = True
