@@ -43,7 +43,7 @@ c.completion.open_categories = ['quickmarks', 'bookmarks', 'history']
 
 c.hints.auto_follow = 'always'
 c.hints.auto_follow_timeout = 400
-c.hints.mode = 'number'
+c.hints.mode = 'letter'
 
 c.search.incremental = False
 
