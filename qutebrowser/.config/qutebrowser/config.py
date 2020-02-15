@@ -87,11 +87,12 @@ c.fonts.prompts = '12pt sans_serif'
 # c.fonts.statusbar = mono
 # c.fonts.tabs = mono
 
-config.bind(',P', 'open -b -- {primary}')
-config.bind(',X', 'spawn -dv mpv --profile=no-term {url}')
-config.bind(',p', 'open -b -- {clipboard}')
-config.bind(',x', 'hint links spawn -dv mpv --profile=no-term {hint-url}')
 config.bind(',d', 'hint all delete')
+config.bind(',r', 'set-cmd-text :open {url:domain}/')
+config.bind('xP', 'open -b -- {primary}')
+config.bind('xp', 'open -b -- {clipboard}')
+config.bind(';x', 'hint links spawn -dv mpv --profile=no-term {hint-url}')
+config.bind('X', 'spawn -dv mpv --profile=no-term {url}')
 
 for f in glob.glob(str(config.configdir / 'conf.d' / '*.py')):
     config.source(str(os.path.relpath(f, start=config.configdir)))
