@@ -73,6 +73,8 @@ set inccommand=nosplit
 
 set shortmess+=c
 
+set mouse=a
+
 noremap j gj
 noremap k gk
 
