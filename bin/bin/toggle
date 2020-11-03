@@ -1,5 +1,6 @@
 #!/bin/sh
 
-(playerctl status && playerctl play-pause) \
-  || (test -S /tmp/mpvsocket && echo 'cycle "pause"' | socat - /tmp/mpvsocket) \
+SOCKET=/run/user/1000/podcast.mpv-ipc
+(test -S "$SOCKET" && echo 'cycle "pause"' | socat - "$SOCKET") \
   || mpc toggle
+  #|| (playerctl status && playerctl play-pause)

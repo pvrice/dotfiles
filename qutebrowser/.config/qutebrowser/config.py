@@ -42,7 +42,7 @@ c.completion.scrollbar.padding = 0
 c.completion.open_categories = ['quickmarks', 'bookmarks', 'history']
 
 c.hints.auto_follow = 'always'
-c.hints.auto_follow_timeout = 400
+#c.hints.auto_follow_timeout = 400
 c.hints.mode = 'letter'
 
 c.search.incremental = False
@@ -89,6 +89,7 @@ c.fonts.prompts = '12pt sans_serif'
 
 config.bind(',d', 'hint all delete')
 config.bind(',r', 'set-cmd-text :open {url:domain}/')
+config.bind(',R', 'set-cmd-text :open -t {url:domain}/')
 config.bind('xP', 'open -b -- {primary}')
 config.bind('xp', 'open -b -- {clipboard}')
 config.bind(';x', 'hint links spawn -dv mpv --profile=no-term {hint-url}')

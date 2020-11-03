@@ -6,3 +6,7 @@ set -gx fish_key_bindings fish_hybrid_key_bindings
 set -gx fish_cursor_default     block
 set -gx fish_cursor_insert      line
 set -gx fish_cursor_replace_one underscore
+
+if which direnv > /dev/null 2>&1
+    eval (direnv hook fish)
+end

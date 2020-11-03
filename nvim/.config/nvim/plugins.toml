@@ -177,3 +177,9 @@ repo = "tpope/vim-fugitive"
 
 [[plugins]]
 repo = "LnL7/vim-nix"
+
+[[plugins]]
+repo = "norcalli/nvim-colorizer.lua"
+hook_post_source = """
+  lua require'colorizer'.setup()
+"""

@@ -1,5 +1,6 @@
 # vim:ft=conf
-set $black        #282828
+#set $black        #282828
+set $black        #32302f
 set $dark1        #3c3836
 set $dark2        #504945
 set $dark3        #665c54

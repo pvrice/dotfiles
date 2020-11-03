@@ -7,7 +7,7 @@ allow_bold = true
 dynamic_title = true
 urgent_on_bell = true
 clickable_url = true
-font = Inconsolata 14
+font = Sarasa Term J 13
 scrollback_lines = 10000
 search_wrap = true
 #icon_name = terminal
@@ -36,6 +36,7 @@ filter_unmatched_urls = true
 # background = #282828
 background = rgba(40, 40, 40, 1)
 # soft contrast: background = #32302f
+#background = rgba(50, 48, 47, 1)
 foreground = #ebdbb2
 foreground_bold = #ebdbb2
 

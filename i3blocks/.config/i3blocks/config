@@ -2,7 +2,7 @@ separator_block_width=15
 markup=none
 
 [mpd]
-command=~/.cabal/bin/mpd-status
+command=MPD_HOST=127.0.0.1 LANG=C.UTF-8 mpd-status
 interval=persist
 markup=pango
 

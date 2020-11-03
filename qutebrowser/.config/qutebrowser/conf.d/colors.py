@@ -161,3 +161,5 @@ c.colors.tabs.pinned.selected.odd.fg = c.colors.tabs.selected.odd.fg
 
 c.colors.webpage.bg = ''
 c.colors.webpage.prefers_color_scheme_dark = True
+# c.colors.webpage.darkmode.enabled = True
+# c.colors.webpage.darkmode.policy.images = 'smart'
