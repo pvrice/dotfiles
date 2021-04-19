@@ -1,6 +1,10 @@
 import glob
 import os.path
 
+# make checkers happy
+c = locals()['c']
+config = locals()['config']
+
 c.aliases = {
         'q': 'quit',
         'w': 'session-save',
@@ -50,8 +54,9 @@ c.completion.scrollbar.padding = 0
 c.completion.open_categories = ['quickmarks', 'bookmarks', 'history', 'filesystem']
 
 c.hints.auto_follow = 'always'
-#c.hints.auto_follow_timeout = 400
 c.hints.mode = 'letter'
+if c.hints.mode == 'number':
+    c.hints.auto_follow_timeout = 400
 
 c.search.incremental = False
 
@@ -83,7 +88,7 @@ c.fonts.default_family = ['Sarasa Term J', 'monospace']
 c.fonts.default_size = '13pt'
 
 # c.fonts.completion.entry = mono
-c.fonts.completion.category = 'bold default_size default_family'
+# c.fonts.completion.category = 'bold default_size default_family'
 # c.fonts.debug_console = mono
 # c.fonts.downloads = mono
 c.fonts.hints = 'bold 12pt default_family'
