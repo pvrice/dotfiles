@@ -26,20 +26,28 @@ c.confirm_quit = ['downloads']
 c.new_instance_open_target = 'tab-silent'
 c.new_instance_open_target_window = 'last-focused'
 
-c.editor.command = ['termite', '-e', 'bash -c \'exec nvim -f {file} -c "normal {line}G{column0}l"\'']
+c.window.hide_decoration = False
+
+alacritty_bin = '/home/peter/bin/alacritty'
+c.editor.command = [alacritty_bin, '-e', 'nvim', '-f', '{file}', '-c', 'normal {line}G{column0}l']
+
+c.fileselect.handler = 'external'
+c.fileselect.single_file.command = [alacritty_bin, '-e', 'ranger', '--choosefile={}']
+c.fileselect.multiple_files.command = [alacritty_bin, '-e', 'ranger', '--choosefiles={}']
+c.fileselect.folder.command = [alacritty_bin, '-e', 'ranger', '--choosedir={}']
 
 c.auto_save.session = True
 
-c.content.host_blocking.lists = ['https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts']
 c.content.javascript.enabled = True
 c.content.autoplay = False
 c.content.pdfjs = True
 c.content.netrc_file = '~/.netrc'
+c.content.notifications.presenter = 'libnotify'
 
 c.completion.shrink = True
 c.completion.scrollbar.width = 0
 c.completion.scrollbar.padding = 0
-c.completion.open_categories = ['quickmarks', 'bookmarks', 'history']
+c.completion.open_categories = ['quickmarks', 'bookmarks', 'history', 'filesystem']
 
 c.hints.auto_follow = 'always'
 #c.hints.auto_follow_timeout = 400
@@ -92,8 +100,18 @@ config.bind(',r', 'set-cmd-text :open {url:domain}/')
 config.bind(',R', 'set-cmd-text :open -t {url:domain}/')
 config.bind('xP', 'open -b -- {primary}')
 config.bind('xp', 'open -b -- {clipboard}')
-config.bind(';x', 'hint links spawn -dv mpv --profile=no-term {hint-url}')
-config.bind('X', 'spawn -dv mpv --profile=no-term {url}')
+config.bind('pw', 'open https://en.wikipedia.org/wiki/Special:Search?search={primary}')
+config.bind('Pw', 'open -t https://en.wikipedia.org/wiki/Special:Search?search={primary}')
+config.bind('PW', 'open -b https://en.wikipedia.org/wiki/Special:Search?search={primary}')
+config.bind(';x', 'hint links spawn -dv /usr/bin/mpv --profile=no-term {hint-url}')
+config.bind('X', 'spawn -dv /usr/bin/mpv --profile=no-term {url}')
+PASS_CMD = ('qute-pass --username-target secret '
+            '--username-pattern "(?:username|email): (.+)"')
+config.bind('zl', f'spawn --userscript {PASS_CMD}')
+config.bind('zul', f'spawn --userscript {PASS_CMD} --username-only')
+config.bind('zpl', f'spawn --userscript {PASS_CMD} --password-only')
+
+config.load_autoconfig()
 
 for f in glob.glob(str(config.configdir / 'conf.d' / '*.py')):
     config.source(str(os.path.relpath(f, start=config.configdir)))
