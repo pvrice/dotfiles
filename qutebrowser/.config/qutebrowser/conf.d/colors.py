@@ -98,10 +98,11 @@ c.colors.messages.warning.bg = neutral_orange
 c.colors.messages.warning.border = faded_orange
 c.colors.messages.warning.fg = light1
 
-c.colors.prompts.bg = dark1
-c.colors.prompts.selected.bg = gray
-c.colors.prompts.border = '1px solid ' + gray
 c.colors.prompts.fg = light1
+c.colors.prompts.bg = dark1
+c.colors.prompts.selected.fg = bright_yellow
+c.colors.prompts.selected.bg = dark2
+c.colors.prompts.border = '1px solid ' + gray
 
 c.colors.statusbar.normal.bg = dark0
 c.colors.statusbar.normal.fg = light1
