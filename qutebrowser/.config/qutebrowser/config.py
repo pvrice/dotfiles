@@ -32,13 +32,20 @@ c.new_instance_open_target_window = 'last-focused'
 
 c.window.hide_decoration = False
 
-alacritty_bin = '/home/peter/bin/alacritty'
-c.editor.command = [alacritty_bin, '-e', 'nvim', '-f', '{file}', '-c', 'normal {line}G{column0}l']
+c.editor.command = [
+    "footclient",
+    "nvim",
+    "-f",
+    "{file}",
+    "-c",
+    "normal {line}G{column0}l",
+]
 
-c.fileselect.handler = 'external'
-c.fileselect.single_file.command = [alacritty_bin, '-e', 'ranger', '--choosefile={}']
-c.fileselect.multiple_files.command = [alacritty_bin, '-e', 'ranger', '--choosefiles={}']
-c.fileselect.folder.command = [alacritty_bin, '-e', 'ranger', '--choosedir={}']
+ranger = ["footclient", "ranger"]
+c.fileselect.handler = "external"
+c.fileselect.single_file.command = [*ranger, "--choosefile={}"]
+c.fileselect.multiple_files.command = [*ranger, "--choosefiles={}"]
+c.fileselect.folder.command = [*ranger, "--choosedir={}"]
 
 c.auto_save.session = True
 
