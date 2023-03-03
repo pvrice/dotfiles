@@ -1,3 +1,10 @@
+# pylint: disable=C0111
+from qutebrowser.config.configfiles import ConfigAPI  # noqa: F401
+from qutebrowser.config.config import ConfigContainer  # noqa: F401
+
+config: ConfigAPI = config  # noqa: F821 pylint: disable=E0602,C0103
+c: ConfigContainer = c  # noqa: F821 pylint: disable=E0602,C0103
+
 dark0_hard = "#1d2021"
 dark0 = "#282828"
 dark0_soft = "#32302f"
