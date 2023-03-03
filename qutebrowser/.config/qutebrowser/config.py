@@ -91,15 +91,15 @@ c.url.searchengines = {
         'y': 'https://youtube.com/results?search_query={}'
         }
 
-c.fonts.default_family = ['Sarasa Term J', 'monospace']
-c.fonts.default_size = '13pt'
+c.fonts.default_family = ["Fantasque Sans Mono", "monospace"]
+c.fonts.default_size = "14pt"
 
 # c.fonts.completion.entry = mono
 # c.fonts.completion.category = 'bold default_size default_family'
 # c.fonts.debug_console = mono
 # c.fonts.downloads = mono
-c.fonts.hints = 'bold 12pt default_family'
-c.fonts.prompts = '12pt sans_serif'
+c.fonts.hints = "bold 13pt default_family"
+c.fonts.prompts = "13pt sans_serif"
 # c.fonts.keyhint = mono
 # c.fonts.messages.error = mono
 # c.fonts.messages.info = mono
