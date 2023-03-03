@@ -40,19 +40,23 @@ faded_purple = "#8f3f71"
 faded_aqua = "#427b58"
 faded_orange = "#af3a03"
 
+
 def hexColorToDecStr(color):
     num = int(color[1:], 16)
-    b = num & 0xff
-    g = (num & (0xff << 8)) >> 8
-    r = (num & (0xff << 16)) >> 16
-    return str(r) + ', ' + str(g) + ', ' + str(b)
+    b = num & 0xFF
+    g = (num & (0xFF << 8)) >> 8
+    r = (num & (0xFF << 16)) >> 16
+    return str(r) + ", " + str(g) + ", " + str(b)
+
 
 c.colors.completion.even.bg = dark0
 c.colors.completion.odd.bg = dark1
 c.colors.completion.fg = [bright_green, light3, neutral_orange]
 c.colors.completion.match.fg = bright_red
 
-c.colors.completion.category.bg = 'qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 ' + gray + ', stop:1 ' + dark2 + ')'
+c.colors.completion.category.bg = (
+    "qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 " + gray + ", stop:1 " + dark2 + ")"
+)
 c.colors.completion.category.fg = light1
 c.colors.completion.category.border.top = dark1
 c.colors.completion.category.border.bottom = dark0
@@ -73,16 +77,22 @@ c.colors.downloads.start.bg = faded_blue
 c.colors.downloads.start.fg = light1
 c.colors.downloads.stop.bg = faded_green
 c.colors.downloads.stop.fg = light1
-c.colors.downloads.system.bg = 'rgb'
-c.colors.downloads.system.fg = 'rgb'
+c.colors.downloads.system.bg = "rgb"
+c.colors.downloads.system.fg = "rgb"
 
-c.colors.hints.bg = 'qlineargradient(x1:0, y1:0, x2:0, y2:1,' \
-    + ' stop:0 rgba(' + hexColorToDecStr(light1) + ', 0.8),' \
-    + ' stop:1 rgba(' + hexColorToDecStr(light4)  + ', 0.8))'
+c.colors.hints.bg = (
+    "qlineargradient(x1:0, y1:0, x2:0, y2:1,"
+    + " stop:0 rgba("
+    + hexColorToDecStr(light1)
+    + ", 0.8),"
+    + " stop:1 rgba("
+    + hexColorToDecStr(light4)
+    + ", 0.8))"
+)
 c.colors.hints.fg = dark0
 c.colors.hints.match.fg = neutral_green
 
-c.colors.keyhint.bg = 'rgba(' + hexColorToDecStr(dark0) + ', 80%)'
+c.colors.keyhint.bg = "rgba(" + hexColorToDecStr(dark0) + ", 80%)"
 c.colors.keyhint.fg = light1
 c.colors.keyhint.suffix.fg = bright_yellow
 
@@ -102,7 +112,7 @@ c.colors.prompts.fg = light1
 c.colors.prompts.bg = dark1
 c.colors.prompts.selected.fg = bright_yellow
 c.colors.prompts.selected.bg = dark2
-c.colors.prompts.border = '1px solid ' + gray
+c.colors.prompts.border = "1px solid " + gray
 
 c.colors.statusbar.normal.bg = dark0
 c.colors.statusbar.normal.fg = light1
@@ -140,7 +150,7 @@ c.colors.tabs.bar.bg = dark2
 c.colors.tabs.indicator.error = bright_red
 c.colors.tabs.indicator.start = neutral_blue
 c.colors.tabs.indicator.stop = neutral_green
-c.colors.tabs.indicator.system = 'rgb'
+c.colors.tabs.indicator.system = "rgb"
 
 c.colors.tabs.even.bg = dark0
 c.colors.tabs.even.fg = light1
@@ -160,7 +170,7 @@ c.colors.tabs.pinned.selected.even.fg = c.colors.tabs.selected.even.fg
 c.colors.tabs.pinned.selected.odd.bg = c.colors.tabs.selected.odd.bg
 c.colors.tabs.pinned.selected.odd.fg = c.colors.tabs.selected.odd.fg
 
-c.colors.webpage.bg = ''
-c.colors.webpage.preferred_color_scheme = 'dark'
+c.colors.webpage.bg = ""
+c.colors.webpage.preferred_color_scheme = "dark"
 # c.colors.webpage.darkmode.enabled = True
 # c.colors.webpage.darkmode.policy.images = 'smart'
