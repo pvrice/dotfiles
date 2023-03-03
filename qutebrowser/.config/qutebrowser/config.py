@@ -115,10 +115,15 @@ config.bind('xp', 'open -b -- {clipboard}')
 config.bind('pw', 'open https://en.wikipedia.org/wiki/Special:Search?search={primary}')
 config.bind('Pw', 'open -t https://en.wikipedia.org/wiki/Special:Search?search={primary}')
 config.bind('PW', 'open -b https://en.wikipedia.org/wiki/Special:Search?search={primary}')
-config.bind(';x', 'hint links spawn -dv /usr/bin/mpv --profile=no-term {hint-url}')
-config.bind('X', 'spawn -dv /usr/bin/mpv --profile=no-term {url}')
-PASS_CMD = ('qute-pass --username-target secret '
-            '--username-pattern "(?:username|email): (.+)"')
+config.bind(";x", "hint links spawn -dv umpv --profile=no-term {hint-url}")
+config.bind("X", "spawn -dv umpv --profile=no-term {url}")
+config.bind("<Ctrl+e>", "run-with-count 3 scroll down")
+config.bind("<Ctrl+y>", "run-with-count 3 scroll up")
+PASS_CMD = (
+    "qute-pass --username-target secret "
+    "--username-pattern '(?:username|email): (.+)' "
+    "--dmenu-invocation 'fuzzel --dmenu'"
+)
 config.bind('zl', f'spawn --userscript {PASS_CMD}')
 config.bind('zul', f'spawn --userscript {PASS_CMD} --username-only')
 config.bind('zpl', f'spawn --userscript {PASS_CMD} --password-only')
