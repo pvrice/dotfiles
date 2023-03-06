@@ -37,11 +37,8 @@ c.window.hide_decoration = False
 
 c.editor.command = [
     "footclient",
-    "nvim",
-    "-f",
-    "{file}",
-    "-c",
-    "normal {line}G{column0}l",
+    "hx",
+    "{file}:{line}:{column0}",
 ]
 
 ranger = ["footclient", "ranger"]
