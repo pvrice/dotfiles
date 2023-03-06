@@ -18,13 +18,12 @@ c.aliases = {
 
 c.bindings.commands = {
     "command": {
-        "<Ctrl-w>": "rl-backward-kill-word",
-        # TODO not the most convenient mapping
-        "<Ctrl-Shift-w>": "rl-unix-word-rubout",
+        "<Ctrl-w>": "rl-filename-rubout",
+        "<Ctrl-Shift-w>": "rl-rubout ' '",
     },
     "prompt": {
-        "<Ctrl-w>": "rl-backward-kill-word",
-        "<Ctrl-Shift-w>": "rl-unix-word-rubout",
+        "<Ctrl-w>": "rl-filename-rubout",
+        "<Ctrl-Shift-w>": "rl-rubout ' '",
     },
 }
 
